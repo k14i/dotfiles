@@ -1,0 +1,89 @@
+# .screenrc
+# http://www.gnu.org/software/screen/manual/screen.html
+
+#######################################
+# Global Settings
+#######################################
+
+# Key Bindings ========================
+escape ^Ww
+# =====================================
+
+# Others ==============================
+altscreen on
+autodetach on
+nethack on
+nonblock on
+# =====================================
+
+
+#######################################
+# Terminal Settings
+#######################################
+
+activity ""
+bell_msg "^G"
+#defbce on
+#deflogin on
+#defflow off
+#defutf8 on
+defkanji utf-8
+defencoding utf-8
+defscrollback 10000
+
+
+#######################################
+# Display Settings
+#######################################
+
+startup_message off
+vbell off
+vbell_msg ""
+msgwait 0
+#hardstatus alwayslastline
+hardstatus string "%h"
+caption always "%{= kw}%n/%{m}%H%{-} %{= kw} %-w%{= wk}%n*%t%{-}%+w%{= kw} %=%{g}%F %f %h %l%{-} | %{c}%Y-%m-%d %0c:%s%{-}"
+#term screen-256color
+
+
+#######################################
+# Virtual Terminal Settings
+#######################################
+
+# Multi User Mode =====================
+multiuser on
+acladd keith
+acladd root
+# =====================================
+
+# Key Bindings ========================
+## Kill
+bind k
+bind ^k
+bind K kill
+
+## Focus
+bind k focus up
+bind j focus down
+
+## Quit
+bindkey -k k; quit
+
+# Control Windows
+bind -c REGION 2 split
+bind -c REGION 1 only
+bind -c REGION 0 remove
+bind -c REGION o focus
+bind -o REGION \^ resize
+bind x command -c REGION
+# =====================================
+
+
+#######################################
+# Log Settings
+#######################################
+
+logfile "$HOME/var/log/screen/screen-%Y%m%d-%n.log"
+log on
+deflog on
+

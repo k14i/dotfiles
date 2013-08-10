@@ -1,0 +1,11 @@
+.rvmrc
+.saves-*
+.DS_Store
+Gemfile.lock
+*~
+*.swp
+*.log
+*.old*
+*.tmp*
+*.orig*
+*.original*

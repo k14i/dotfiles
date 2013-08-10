@@ -1,0 +1,93 @@
+2008-01-01  Norbert Koch  <viteno@xemacs.org>
+
+	* Makefile (VERSION): XEmacs package 1.13 released.
+
+2008-01-01  Aidan Kehoe  <kehoea@parhasard.net>
+
+	* Makefile (REQUIRES):
+	Add xemacs-base to the build REQUIRES list for elib, so the build
+	works. Thank you Vin. 
+
+2007-12-31  Aidan Kehoe  <kehoea@parhasard.net>
+
+	* Makefile (ELCS):
+	Actually include unique.el in the installed package. 
+
+2007-12-10  Norbert Koch  <viteno@xemacs.org>
+
+	* Makefile (VERSION): XEmacs package 1.12 released.
+
+2007-12-06  Aidan Kehoe  <kehoea@parhasard.net>
+
+	* unique.el:
+	Import Simon Marshall's unique.el. We use his code in
+	font-lock.el, and it is of general utility. 
+
+	Add a couple of compiler macros for #'unique and #'uniq, to make
+	it possible to generate just byte code for common values for
+	PREDICATE.
+
+	Remove an unused variable from #'unique-reorder-buffer. 
+
+2003-10-31  Norbert Koch  <viteno@xemacs.org>
+
+	* Makefile (VERSION): XEmacs package 1.11 released.
+
+2003-03-30  Steve Youngs  <youngs@xemacs.org>
+
+	* Makefile (EARLY_GENERATED_LISP): Revert previous change.
+
+2003-03-22  Steve Youngs  <youngs@xemacs.org>
+
+	* Makefile (EARLY_GENERATED_LISP): Explicitly set so we don't try
+	to build custom-loads, this package doesn't have any.
+
+2003-03-09  Ben Wing  <ben@xemacs.org>
+
+	* Makefile (in-place):
+	Delete explicit compile:: and binkit: rules.
+	Use STANDARD_DOCS instead of explicitly giving the targets
+	and dependencies.
+	Add dependency in EXTRA_TEXI_FILES.
+
+2002-11-29  Ben Wing  <ben@xemacs.org>
+
+	* .cvsignore: Remove files now handled automatically by CVS.
+	* Makefile: Use `compile' instead of hard-coded `all'.
+
+2002-10-15  Ville Skyttä  <scop@xemacs.org>
+
+	* Makefile (srckit): Remove.
+
+2002-10-14  Ville Skyttä  <scop@xemacs.org>
+
+	* Makefile (MANUAL): Removed (unused).
+
+2002-07-16  Adrian Aichner  <adrian@xemacs.org>
+
+	* .cvsignore: Add generated .info* and .html files.
+
+2002-01-07  Adrian Aichner  <adrian@xemacs.org>
+
+	* Makefile (HTML_FILES): New.
+	* Makefile (HTML_DEP): New.
+
+2001-12-30  Adrian Aichner  <adrian@xemacs.org>
+
+	* elib.texi: Add missing direntry.
+
+2000-10-05  Martin Buchholz  <martin@xemacs.org>
+
+	* *: Mega typo fix.
+
+1998-10-01  SL Baur  <steve@altair.xemacs.org>
+
+	* Adapted to XEmacs.
+
+1998-08-25  Karl M. Hegbloom  <karlheg@bittersweet.inetarena.com>
+
+	* This is elib_1.0-8 from Debian GNU/Linux.
+	* Renamed ChangeLog to 0ChangeLog, installed this fresh one.
+	* Added an XEmacs packaging Makefile, moved aside original Makefile.
+	* Imported to CVS control for the XEmacs project.
+
