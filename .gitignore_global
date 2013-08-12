@@ -9,3 +9,7 @@ Gemfile.lock
 *.tmp*
 *.orig*
 *.original*
+GPATH
+GRTAGS
+GTAGS
+tags
