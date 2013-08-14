@@ -1,3 +1,4 @@
+.git
 .rvmrc
 .saves-*
 .DS_Store
@@ -13,3 +14,9 @@ GPATH
 GRTAGS
 GTAGS
 tags
+w3msrc*
+w3mcache*
+w3msrc*
+w3mtmp*
+cookie
+history
