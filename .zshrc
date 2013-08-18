@@ -19,7 +19,7 @@ SSH_SECRET_KEY='~/.ssh/id_rsa'
 files_to_delete=("$HOME/.emacs.elc")
 for f in "${files_to_delete[@]}"; do
   if test -f $f; then
-    rm $f
+    \rm $f
   fi
 done
 
@@ -60,6 +60,9 @@ setopt mark_dirs
 autoload smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
 
+# zsh-completions =====================
+fpath=(/usr/local/share/zsh-completions $fpath)
+# =====================================
 
 #######################################
 # History
@@ -133,11 +136,11 @@ export RSENSE_HOME=$HOME'/lib/rsense-0.3'
 export EXENV_ROOT=/usr/local/var/exenv
 # =====================================
 
-export PATH=/Developer/usr/bin:$PATH
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
-export PATH=/usr/local/Cellar/elixir/bin:$PATH
-export PATH=$HOME/Dropbox/usr/local/bin:$PATH
+#export PATH=/Developer/usr/bin:$PATH
+#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+#export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
+#export PATH=/usr/local/Cellar/elixir/bin:$PATH
+#export PATH=$HOME/Dropbox/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=/Applications/Wireshark.app/Contents/Resources/bin:$PATH
 #export MANPATH=/opt/local/man:$MANPATH
