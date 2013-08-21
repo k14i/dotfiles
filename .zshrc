@@ -670,7 +670,7 @@ alias sl='s -ls'
 #### /GNU screen
 
 autoload -U compinit
-compinit
+compinit -u
 
 export LANG=ja_JP.UTF-8
 limit coredumpsize 102400
