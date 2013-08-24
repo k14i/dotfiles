@@ -136,6 +136,10 @@ export RSENSE_HOME=$HOME'/lib/rsense-0.3'
 export EXENV_ROOT=/usr/local/var/exenv
 # =====================================
 
+# VMware ==============================
+export PATH=$PATH:/Applications/VMware\ OVF\ Tool
+# =====================================
+
 #export PATH=/Developer/usr/bin:$PATH
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
