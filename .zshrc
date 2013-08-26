@@ -140,6 +140,15 @@ export EXENV_ROOT=/usr/local/var/exenv
 export PATH=$PATH:/Applications/VMware\ OVF\ Tool
 # =====================================
 
+# GlusterFS ===========================
+export PATH=$PATH:/usr/local/glusterfs/sbin
+export MANPATH=$MANPATH:/usr/local/glusterfs/share/man
+# =====================================
+
+# Fluentd/td-agent ====================
+export PATH=$PATH:/usr/lib64/fluent/ruby/bin
+# =====================================
+
 #export PATH=/Developer/usr/bin:$PATH
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
