@@ -88,3 +88,7 @@ fi
 PATH=$PATH:$HOME/Dropbox/usr/local/bin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+PATH=$PATH:/usr/local/glusterfs/sbin
+MANPATH=$MANPATH:/usr/local/glusterfs/share/man
+PATH=$PATH:/usr/lib64/fluent/ruby/bin
