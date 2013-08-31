@@ -85,7 +85,6 @@ if [[ "$PS1" ]]; then
   function j { jobs -l; }
 fi
 
-PATH=$PATH:$HOME/Dropbox/usr/local/bin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
