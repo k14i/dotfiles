@@ -1,5 +1,6 @@
 .git
 .gitconfig
+.rvm
 .rvmrc
 .saves-*
 .DS_Store
