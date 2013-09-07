@@ -10,7 +10,7 @@
 
 LOCAL_ID='keith'
 SSH_SECRET_KEY='~/.ssh/id_rsa'
-
+KERNEL=`uname -s`
 
 #######################################
 # Cleaning
@@ -188,7 +188,7 @@ alias l='ls -alrt'
 # =====================================
 
 # rm ==================================
-case `uname -s` in
+case $KERNEL in
   Darwin)
     if [ -f /opt/local/bin/gmv ] || [ -f /usr/local/bin/gmv ]; then
       alias rm="gmv -f --backup=numbered --target-directory /tmp/rm/`date +%Y-%m-%d`"
@@ -209,6 +209,19 @@ case `uname -s` in
     ;;
   *)
     rm="rm -i"
+    ;;
+esac
+# =====================================
+
+# top =================================
+case $KERNEL in
+  Darwin)
+    alias top="top -s1 -o cpu -R -F"
+    alias topu="top -U $LOCAL_ID"
+    ;;
+  Linux)
+    alias top="top -d 1"
+    alias topu="top -U $LOCAL_ID"
     ;;
 esac
 # =====================================
