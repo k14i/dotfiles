@@ -113,6 +113,16 @@ setopt ignore_eof
 # PATH
 #######################################
 
+# Python ==============================
+case $KERNEL in
+  Darwin)
+    if [ `which brew > /dev/null; echo $?` -eq 0 ]; then
+      export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+    fi
+    ;;
+esac
+# =====================================
+
 # MySQL ===============================
 export MYSQL_HOME=$HOME'/etc'
 # =====================================
