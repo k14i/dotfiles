@@ -120,6 +120,16 @@ case $KERNEL in
       export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
     fi
     ;;
+  Linux)
+    dir="/usr/local/lib/python3.3/site-packages"
+    if [ -d $dir ]; then
+      export PYTHONPATH=$dir
+    fi
+    dir="/usr/local/lib/python2.7/site-packages"
+    if [ -d $dir ]; then
+      export PYTHONPATH=$dir
+    fi
+    ;;
 esac
 # =====================================
 
