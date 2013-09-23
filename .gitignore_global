@@ -2,11 +2,13 @@
 .gitconfig
 .rvm
 .rvmrc
+.ruby-version
+.ruby-gemset
 .saves-*
 .DS_Store
 Gemfile.lock
 *~
-*.swp
+*.swp*
 *.log
 *.old*
 *.tmp*
