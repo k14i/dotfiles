@@ -124,9 +124,15 @@ case $KERNEL in
     dir="/usr/local/lib/python3.3/site-packages"
     if [ -d $dir ]; then
       export PYTHONPATH=$dir
+    else
+      mkdir -p $dir
+      export PYTHONPATH=$dir
     fi
     dir="/usr/local/lib/python2.7/site-packages"
     if [ -d $dir ]; then
+      export PYTHONPATH=$dir
+    else
+      mkdir -p $dir
       export PYTHONPATH=$dir
     fi
     ;;
