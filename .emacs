@@ -554,6 +554,14 @@
 ;    (ecb-activate)))
 ;(global-set-key [f2] 'ecb-toggle)
 
+;;;; Sphinx --------
+;(require 'rst)
+;(setq auto-mode-alist
+;      (append '(("\\.rst$" . rst-mode)
+;                ("\\.rest$" . rst-mode)) auto-mode-alist))
+;(setq frame-background-mode 'dark)
+;(add-hook 'rst-mode-hook '(lambda() (setq indent-tabs-mode nil)))
+
 
 ;###########################################################
 ;# IDE
