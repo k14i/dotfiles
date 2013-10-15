@@ -15,6 +15,7 @@ Gemfile.lock
 *.tmp*
 *.orig*
 *.original*
+*.!sync
 GPATH
 GRTAGS
 GTAGS
