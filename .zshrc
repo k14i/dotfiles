@@ -180,6 +180,7 @@ export PATH=$PATH:/usr/lib64/fluent/ruby/bin
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
 #export PATH=/usr/local/Cellar/elixir/bin:$PATH
 #export PATH=$HOME/Dropbox/usr/local/bin:$PATH
+export PATH=$HOME/local/elixir/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=/Applications/Wireshark.app/Contents/Resources/bin:$PATH
 #export MANPATH=/opt/local/man:$MANPATH
@@ -216,12 +217,12 @@ alias l='ls -alrt'
 # rm ==================================
 case $KERNEL in
   Darwin)
-    if [ -f /opt/local/bin/gmv ] || [ -f /usr/local/bin/gmv ]; then
-      alias rm="gmv -f --backup=numbered --target-directory /tmp/rm/`date +%Y-%m-%d`"
+    if [ -f /opt/local/bin/trash ] || [ -f /usr/local/bin/trash ]; then
+      alias rm="trash"
     elif [ -f /opt/local/bin/rmtrash ] || [ -f /usr/local/bin/rmtrash ]; then
       alias rm="rmtrash"
-    elif [ -f /opt/local/bin/trash ] || [ -f /usr/local/bin/trash ]; then
-      alias rm="trash"
+    elif [ -f /opt/local/bin/gmv ] || [ -f /usr/local/bin/gmv ]; then
+      alias rm="gmv -f --backup=numbered --target-directory /tmp/rm/`date +%Y-%m-%d`"
     else
       alias rm="rm -i"
     fi
