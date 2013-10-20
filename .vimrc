@@ -26,9 +26,11 @@ endif
 
 " Backup ==============================
 set backup
-set backupdir=~/.vim/backup
+"set backupdir=~/.vim/backup
+set backupdir=~/.Trash
 set swapfile
-set directory=~/.vim/swap
+"set directory=~/.vim/swap
+set directory=~/.Trash
 set backupskip=/tmp/*,/private/tmp/*
 " =====================================
 

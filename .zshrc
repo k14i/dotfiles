@@ -124,9 +124,15 @@ case $KERNEL in
     dir="/usr/local/lib/python3.3/site-packages"
     if [ -d $dir ]; then
       export PYTHONPATH=$dir
+    else
+      mkdir -p $dir
+      export PYTHONPATH=$dir
     fi
     dir="/usr/local/lib/python2.7/site-packages"
     if [ -d $dir ]; then
+      export PYTHONPATH=$dir
+    else
+      mkdir -p $dir
       export PYTHONPATH=$dir
     fi
     ;;
@@ -174,6 +180,7 @@ export PATH=$PATH:/usr/lib64/fluent/ruby/bin
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
 #export PATH=/usr/local/Cellar/elixir/bin:$PATH
 #export PATH=$HOME/Dropbox/usr/local/bin:$PATH
+export PATH=$HOME/local/elixir/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=/Applications/Wireshark.app/Contents/Resources/bin:$PATH
 #export MANPATH=/opt/local/man:$MANPATH
@@ -210,12 +217,12 @@ alias l='ls -alrt'
 # rm ==================================
 case $KERNEL in
   Darwin)
-    if [ -f /opt/local/bin/gmv ] || [ -f /usr/local/bin/gmv ]; then
-      alias rm="gmv -f --backup=numbered --target-directory /tmp/rm/`date +%Y-%m-%d`"
+    if [ -f /opt/local/bin/trash ] || [ -f /usr/local/bin/trash ]; then
+      alias rm="trash"
     elif [ -f /opt/local/bin/rmtrash ] || [ -f /usr/local/bin/rmtrash ]; then
       alias rm="rmtrash"
-    elif [ -f /opt/local/bin/trash ] || [ -f /usr/local/bin/trash ]; then
-      alias rm="trash"
+    elif [ -f /opt/local/bin/gmv ] || [ -f /usr/local/bin/gmv ]; then
+      alias rm="gmv -f --backup=numbered --target-directory /tmp/rm/`date +%Y-%m-%d`"
     else
       alias rm="rm -i"
     fi
@@ -622,7 +629,9 @@ alias w3m='w3m -cookie'
 alias google='w3m https://www.google.com/ncr'
 alias amazon='w3m https://www.amazon.co.jp/'
 alias pb-fix-utf-8="pbpaste | iconv -c -f UTF-8-MAC -t UTF-8 | pbcopy"
+alias zshrc="source $HOME/.zshrc"
 alias source-zshrc="source $HOME/.zshrc"
+alias zshrc.source="source $HOME/.zshrc"
 alias topaz="$HOME/devel/github/topazproject/topaz/bin/topaz"
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
