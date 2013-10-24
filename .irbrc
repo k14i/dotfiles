@@ -18,10 +18,14 @@ rescue LoadError => ex
 end
 
 if defined? Rails::Console
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
-  ActiveResource::Base.logger = Logger.new(STDOUT)
+  require "#{Rails.root}/spec/spec_helper"
 
-  require 'spec_helper'
+  begin
+    ActiveRecord::Base.logger = Logger.new(STDOUT)
+    ActiveResource::Base.logger = Logger.new(STDOUT)
+  rescue => ex
+    warn ex
+  end
 
   if defined? Hirb
     Hirb.enable
