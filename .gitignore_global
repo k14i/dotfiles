@@ -9,6 +9,7 @@
 .DS_Store
 Gemfile.lock
 *~
+*.!sync
 *.swp*
 *.log
 *.old*

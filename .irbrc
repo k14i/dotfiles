@@ -18,7 +18,7 @@ rescue LoadError => ex
 end
 
 if defined? Rails::Console
-  require "#{Rails.root}/spec/spec_helper"
+  require "#{Rails.root}/spec/spec_helper" if File.exists?("#{Rails.root}/spec/spec_helper.rb")
 
   begin
     ActiveRecord::Base.logger = Logger.new(STDOUT)
@@ -30,6 +30,11 @@ if defined? Rails::Console
   if defined? Hirb
     Hirb.enable
   end
+end
+
+if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  require 'logger'
+  RAILS_DEFAULT_LOGGER = Logger.new(STDOUT)
 end
 
 class Object
