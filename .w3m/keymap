@@ -31,7 +31,7 @@ keymap ESC-m NULL
 keymap ( NULL
 keymap ) NULL
 keymap C-j NULL
-#keymap C-m NULL
+keymap C-m NULL
 keymap ESC-C-j NULL
 keymap ESC-C-m NULL
 keymap ESC-w NULL
@@ -154,7 +154,9 @@ keymap :H HELP
 
 ########## history navigation ##########
 keymap L NEXT
+keymap . NEXT
 keymap H PREV
+keymap u PREV
 keymap :h SELECT_MENU
 #keymap :h HISTORY
 
@@ -205,7 +207,8 @@ keymap :e LOAD
 # jump
 keymap ESC-C-j SUBMIT
 keymap C-] TAB_LINK
-#keymap C-j GOTO_LINK
+keymap i GOTO_LINK
+keymap I TAB_LINK
 
 ########## info ##########
 keymap y PEEK
@@ -225,11 +228,27 @@ keymap :b VIEW_BOOKMARK
 
 ########## tab ##########
 keymap d CLOSE_TAB
+keymap ESC-w CLOSE_TAB
+keymap C-W CLOSE_TAB
+
 keymap gh GOTO http://www.google.com/en
+
 keymap gH TAB_GOTO http://www.google.com/en
+
 keymap C-t NEW_TAB
+keymap ESC-t NEW_TAB
+keymap C-N NEW_TAB
+
 keymap gt NEXT_TAB
+keymap ESC-l NEXT_TAB
+keymap ESC-n NEXT_TAB
+keymap L NEXT_TAB
+
 keymap gT PREV_TAB
+keymap ESC-h PREV_TAB
+keymap ESC-p PREV_TAB
+keymap H PREV_TAB
+
 keymap C-wL TAB_RIGHT
 keymap C-wH TAB_LEFT
 keymap t TAB_GOTO
