@@ -626,10 +626,19 @@ alias tw-timeline="tw timeline"
 alias tw-stream-timeline="tw stream timeline"
 # =====================================
 
-# Others ==============================
+# w3m =================================
 alias w3m='w3m -cookie -B -graph'
 alias google='w3m https://www.google.com/ncr'
-alias amazon='w3m https://www.amazon.co.jp/'
+alias google-ja='w3m https://www.google.co.jp/'
+alias duckduckgo='w3m https://duckduckgo.com/'
+alias amazon='w3m https://www.amazon.com/'
+alias amazon-ja='w3m https://www.amazon.co.jp/'
+alias wikipedia='w3m http://en.wikipedia.org/'
+alias wikipedia-ja='w3m http://ja.wikipedia.org/'
+alias github='w3m https://github.com/'
+# =====================================
+
+# Others ==============================
 alias pb-fix-utf-8="pbpaste | iconv -c -f UTF-8-MAC -t UTF-8 | pbcopy"
 alias zshrc="source $HOME/.zshrc"
 alias source-zshrc="source $HOME/.zshrc"
