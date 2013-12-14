@@ -627,7 +627,7 @@ alias tw-stream-timeline="tw stream timeline"
 # =====================================
 
 # Others ==============================
-alias w3m='w3m -cookie'
+alias w3m='w3m -cookie -B -graph'
 alias google='w3m https://www.google.com/ncr'
 alias amazon='w3m https://www.amazon.co.jp/'
 alias pb-fix-utf-8="pbpaste | iconv -c -f UTF-8-MAC -t UTF-8 | pbcopy"
