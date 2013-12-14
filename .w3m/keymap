@@ -1,4 +1,10 @@
-########## invalidate defaults ##########
+# .w3m/keymap
+# http://w3m.sourceforge.net/MANUAL#Key:orig
+
+###############################
+## Initialize
+###############################
+
 keymap K NULL
 keymap J NULL
 keymap SPC NULL
@@ -143,118 +149,244 @@ keymap ESC-o NULL
 keymap ESC-k NULL
 keymap \\ NULL
 keymap ! NULL
-#keymap C-z NULL
+keymap C-z NULL
 keymap ZZ NULL
 keymap ZQ NULL
 
 
-########## command ##########
-keymap :: COMMAND
-keymap :H HELP
+###############################
+## Page/Cursor motion
+###############################
 
-########## history navigation ##########
-keymap L NEXT
-keymap . NEXT
-keymap H PREV
-keymap u PREV
-keymap :h SELECT_MENU
-#keymap :h HISTORY
-
-########## scrolling ##########
-keymap C-e DOWN
-keymap C-y UP
-keymap gg BEGIN
-keymap G END
 keymap C-d NEXT_PAGE
 keymap C-u PREV_PAGE
-keymap zz CENTER_V
-########## cursor ##########
-keymap l MOVE_RIGHT
-keymap h MOVE_LEFT
-keymap j MOVE_DOWN1
-keymap k MOVE_UP1
-keymap C-l MOVE_RIGHT
-keymap C-h MOVE_LEFT
-keymap C-j MOVE_DOWN1
-keymap C-k MOVE_UP1
+
 keymap RIGHT MOVE_RIGHT
+keymap C-l MOVE_RIGHT
+keymap l MOVE_RIGHT
+
 keymap LEFT MOVE_LEFT
+keymap C-h MOVE_LEFT
+keymap h MOVE_LEFT
+
+#keymap  MOVE_DOWN
+#keymap  MOVE_UP
+#keymap  MOVE_RIGHT1
+#keymap  MOVE_LEFT1
+
 keymap DOWN MOVE_DOWN1
+keymap C-j MOVE_DOWN1
+keymap j MOVE_DOWN1
+
 keymap UP MOVE_UP1
+keymap C-k MOVE_UP1
+keymap k MOVE_UP1
+
+keymap C-e DOWN
+keymap C-y UP
+
+#keymap  SHIFT_LEFT
+#keymap  SHIFT_RIGHT
+#keymap  LEFT
+#keymap  RIGHT
+
 keymap 0 LINE_BEGIN
 keymap $ LINE_END
+#keymap  CENTER_H
+keymap zz CENTER_V
+
+#keymap  GOTO_LINE
+keymap gg BEGIN
+keymap G END
 keymap w NEXT_WORD
 keymap b PREV_WORD
-########## cursor history ##########
-keymap C-i REDO
-keymap C-o UNDO
-########## navigation ##########
-keymap f MOVE_LIST_MENU
-keymap F LIST_MENU
+
+#keymap  LINK_BEGIN
+#keymap  LINK_END
+
 keymap C-n NEXT_LINK
 keymap C-p PREV_LINK
+keymap f MOVE_LIST_MENU
 
-# reload
-keymap r RELOAD
-keymap C-r RELOAD
+#keymap  NEXT_RIGHT
+#keymap  NEXT_LEFT
+#keymap  NEXT_DOWN
+#keymap  NEXT_UP
+#keymap  NEXT_RIGHT_DOWN
+#keymap  NEXT_LEFT_UP
 
-# save/load 
-keymap :w SAVE
-keymap :W PRINT
-keymap :o GOTO
-keymap :e LOAD
+keymap C-o UNDO
+keymap TAB REDO
 
-# jump
-keymap ESC-C-j SUBMIT
-keymap C-] TAB_LINK
+
+###############################
+## Hyperlink operation
+###############################
+
 keymap i GOTO_LINK
 keymap I TAB_LINK
 
-########## info ##########
+#keymap  SAVE_LINK
+#keymap  VIEW_IMAGE
+#keymap  SAVE_IMAGE
+
+keymap ESC-C-j SUBMIT
 keymap y PEEK
+
+#keymap  PEEK_LINK
+#keymap  PEEK_IMG
+
 keymap gC-g INFO
 keymap C-g LINE_INFO
+
+#keymap  MARK_URL
+
+keymap ";" MARK_WORD
+
+#keymap  MARK_MID
+#keymap  FRAME
+#keymap  EXTERN
+#keymap  EXTERN_LINK
+#keymap  LIST
+
+keymap F LIST_MENU
+
+#keymap  LINK_MENU
+
+
+###############################
+## File/Stream operation
+###############################
+
+keymap :o GOTO
+#keymap  GOTO_RELATIVE
+keymap go TAB_GOTO
+#keymap  TAB_GOTO_RELATIVE
+keymap :e LOAD
+#keymap  READ_SHELL
+#keymap  PIPE_SHELL
+#keymap  PIPE_BUF
+
+
+###############################
+## Buffer operation
+###############################
+
+#keymap  BACK
+keymap . NEXT
+keymap u PREV
+keymap :m SELECT_MENU
+#keymap  SELECT
 keymap gf VIEW
+keymap :w SAVE
+keymap :W PRINT
+#keymap  EDIT
+#keymap  EDIT_SCREEN
+keymap C-r RELOAD
+keymap r RELOAD
+#keymap  RESHAPE
+#keymap  REDRAW
+#keymap  DISPLAY_IMAGE
+#keymap  STOP_IMAGE
 
-########## search ##########
-keymap / ISEARCH
-keymap ? ISEARCH_BACK
-keymap n SEARCH_NEXT
-keymap N SEARCH_PREV
 
-########## bookmarks ##########
-keymap a ADD_BOOKMARK
-keymap :b VIEW_BOOKMARK
+###############################
+## Tab operation
+###############################
 
-########## tab ##########
-keymap d CLOSE_TAB
-keymap ESC-w CLOSE_TAB
-keymap C-W CLOSE_TAB
-
-keymap gh GOTO http://www.google.com/en
-
-keymap gH TAB_GOTO http://www.google.com/en
-
-keymap C-t NEW_TAB
 keymap ESC-t NEW_TAB
-keymap C-N NEW_TAB
+keymap C-t NEW_TAB
+keymap tt NEW_TAB
 
-keymap gt NEXT_TAB
+keymap ESC-w CLOSE_TAB
+keymap dd CLOSE_TAB
+keymap tw CLOSE_TAB
+
 keymap ESC-l NEXT_TAB
 keymap ESC-n NEXT_TAB
+keymap tn NEXT_TAB
 keymap L NEXT_TAB
 
-keymap gT PREV_TAB
 keymap ESC-h PREV_TAB
 keymap ESC-p PREV_TAB
+keymap tp PREV_TAB
 keymap H PREV_TAB
 
+keymap T TAB_MENU
 keymap C-wL TAB_RIGHT
 keymap C-wH TAB_LEFT
-keymap t TAB_GOTO
-keymap T TAB_MENU
 
-########## quit ##########
-keymap :q QUIT 
-keymap ZZ QUIT
-keymap ZQ EXIT
+
+###############################
+## Bookmark operation
+###############################
+
+keymap :b VIEW_BOOKMARK
+keymap a ADD_BOOKMARK
+
+
+###############################
+## Search
+###############################
+
+#keymap  SEARCH_FORE
+#keymap  SEARCH_BACK
+keymap n SEARCH_NEXT
+keymap N SEARCH_PREV
+keymap / ISEARCH
+keymap ? ISEARCH_BACK
+
+
+###############################
+## Dictionary lookup
+###############################
+
+#keymap  DICT_WORD
+#keymap  DICT_WORD_AT
+
+
+###############################
+## Mark operation
+###############################
+
+#keymap  MARK
+#keymap  NEXT_MARK
+#keymap  PREV_MARK
+#keymap  REG_MARK
+
+
+###############################
+## Miscellany
+###############################
+
+keymap :M MENU
+keymap :H HELP
+keymap :O OPTIONS
+keymap :V VERSION
+keymap :C COOKIE
+keymap :h HISTORY
+keymap :D DOWNLOAD_LIST
+#keymap  CHARSET
+#keymap  DEFAULT_CHARSET
+#keymap  MSGS
+keymap ESC-m MOUSE_TOGGLE
+#keymap  WRAP_TOGGLE
+keymap :: COMMAND
+#keymap  ALARM
+#keymap  SET_OPTION
+#keymap  SETENV
+#keymap  DEFINE_KEY
+#keymap  REINIT
+keymap :s EXEC_SHELL
+keymap C-z INTERRUPT
+keymap :q QUIT
+keymap :w EXIT
+
+
+###############################
+## User defined keymaps
+###############################
+
+keymap gH TAB_GOTO http://www.google.com/ncr
+keymap gh GOTO http://www.google.com/ncr
+
