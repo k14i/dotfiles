@@ -199,7 +199,8 @@ alias scp="scp -i $SSH_SECRET_KEY"
 # =====================================
 
 # mosh ================================
-alias mosh="mosh --ssh='TERM=xterm ssh -X -i $SSH_SECRET_KEY'"
+alias moshx="mosh --ssh='TERM=xterm ssh -X -i $SSH_SECRET_KEY'"
+alias mosh="mosh --ssh='TERM=xterm ssh -i $SSH_SECRET_KEY'"
 # =====================================
 
 # global aliases ======================
