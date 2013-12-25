@@ -8,6 +8,7 @@
 .saves-*
 .DS_Store
 Gemfile.lock
+*.gem*
 *~
 *.!sync
 *.swp*
@@ -28,3 +29,4 @@ w3mtmp*
 cookie
 history
 .netrwhist
+.bundle
