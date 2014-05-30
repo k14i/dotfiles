@@ -167,6 +167,10 @@ vnoremap * "zy:let @/ = @z<CR>n
 "# Plugins
 "#######################################
 
+" pathogen.vim ========================
+execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
+" =====================================
+
 " GNU Global ==========================
 let GtagsCscope_Auto_Load = 1
 let GtagsCscope_Auto_Map = 1

@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/keith/Share/btsync/home/keith/devel/actory/lib/actory/receiver'
+let g:netrw_dirhist_2='/Users/keith/Share/btsync/home/keith/devel/actory/lib/actory'
+let g:netrw_dirhist_3='/Users/keith/devel/github/keithseahus.github.io/javascripts'
+let g:netrw_dirhist_4='/Users/keith/devel/elixir/msgpack-elixir'
