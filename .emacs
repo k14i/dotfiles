@@ -55,13 +55,24 @@
 (setq vc-command-messages t)
 ; =====================================
 
+; cc-mode =============================
+(defun my-c-c++-mode-init ()
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  ;;
+  )
+(add-hook 'c-mode-hook 'my-c-c++-mode-init)
+(add-hook 'c++-mode-hook 'my-c-c++-mode-init)
+; =====================================
+
 
 ;###########################################################
 ;# Input Settings
 ;###########################################################
 
 ; Tab ===================================
-(setq-default indent-tabs-mode nil)
+;(setq-default indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
 (setq tab-width 2)
 ;(setq-default tab-width 2)
 ;(setq default-tab-width 2)
