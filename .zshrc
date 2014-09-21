@@ -175,6 +175,11 @@ export MANPATH=$MANPATH:/usr/local/glusterfs/share/man
 export PATH=$PATH:/usr/lib64/fluent/ruby/bin
 # =====================================
 
+# RVM =================================
+export PATH=$PATH:$HOME/.rvm/gems/ruby-2.1.3/bin
+export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
+# =====================================
+
 #export PATH=/Developer/usr/bin:$PATH
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
