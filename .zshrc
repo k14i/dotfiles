@@ -806,6 +806,10 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # =====================================
 
+# tmux ================================
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+# =====================================
+
 # mosh ================================
 compdef mosh=ssh
 # =====================================
