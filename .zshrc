@@ -815,6 +815,8 @@ fi
 
 # tmux ================================
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+alias tmux-session-save='tmux-session save'
+alias tmux-session-restore='tmux-session restore'
 # =====================================
 
 # mosh ================================
