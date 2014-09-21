@@ -802,6 +802,8 @@ compinit -u
 export LANG=ja_JP.UTF-8
 limit coredumpsize 102400
 setopt nobeep
+
+[[ -s $HOME/.screeninator/scripts/screeninator ]] && source $HOME/.screeninator/scripts/screeninator
 # =====================================
 
 # rvm =================================
