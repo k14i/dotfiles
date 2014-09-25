@@ -175,6 +175,11 @@ export MANPATH=$MANPATH:/usr/local/glusterfs/share/man
 export PATH=$PATH:/usr/lib64/fluent/ruby/bin
 # =====================================
 
+# RVM =================================
+export PATH=$PATH:$HOME/.rvm/gems/ruby-2.1.3/bin
+export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
+# =====================================
+
 #export PATH=/Developer/usr/bin:$PATH
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
@@ -799,6 +804,8 @@ compinit -u
 export LANG=ja_JP.UTF-8
 limit coredumpsize 102400
 setopt nobeep
+
+[[ -s $HOME/.screeninator/scripts/screeninator ]] && source $HOME/.screeninator/scripts/screeninator
 # =====================================
 
 # rvm =================================
@@ -806,6 +813,12 @@ if [ -f /etc/profile.d/rvm.sh ]; then
   source /etc/profile.d/rvm.sh
 fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# =====================================
+
+# tmux ================================
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+alias tmux-session-save='tmux-session save'
+alias tmux-session-restore='tmux-session restore'
 # =====================================
 
 # mosh ================================

@@ -22,3 +22,4 @@ for file in files:
   print "INFO: create symlink: source = %s, link_name = %s" % (os.path.abspath(file), target)
   os.symlink(os.path.abspath(file), target)
 
+os.mkdir(homedir + "/.Trash")
