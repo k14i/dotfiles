@@ -746,14 +746,39 @@ colors
 # =====================================
 
 # Prompt ==============================
-PROMPT="%{${fg[cyan]}%}[20%D %*]%# %{${reset_color}%}"
-PROMPT2="%{${fg[red]}%}[%n@%m] %{${reset_color}%}"
-if [ $TERM \=\= "screen" ]; then
-  RPROMPT="%{${fg[magenta]}%}[S]`echo $STY | sed 's/\./ /g' | awk '{print $1}'` %n%{${fg[white]}%}@%m:%{${fg[green]}%}%/ %{${reset_color}%}"
-else
-  RPROMPT="%{${fg[magenta]}%}%n%{${fg[white]}%}@%m:%{${fg[green]}%}%/ %{${reset_color}%}"
-fi
-SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+zsh_set_prompt_type_0() {
+  export ZSH_PROMPT_TYPE=0
+  PROMPT="%{${fg[cyan]}%}%# %{${reset_color}%}"
+  PROMPT2="%{${fg[red]}%}[%n@%m] %{${reset_color}%}"
+  RPROMPT="%{${reset_color}%}"
+  SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+}
+
+zsh_set_prompt_type_1() {
+  export ZSH_PROMPT_TYPE=1
+  PROMPT="%{${fg[cyan]}%}[20%D %*]%# %{${reset_color}%}"
+  PROMPT2="%{${fg[red]}%}[%n@%m] %{${reset_color}%}"
+  if [ $TERM \=\= "screen" ]; then
+    RPROMPT="%{${fg[magenta]}%}[S]`echo $STY | sed 's/\./ /g' | awk '{print $1}'` %n%{${fg[white]}%}@%m:%{${fg[green]}%}%/ %{${reset_color}%}"
+  else
+    RPROMPT="%{${fg[magenta]}%}%n%{${fg[white]}%}@%m:%{${fg[green]}%}%/ %{${reset_color}%}"
+  fi
+  SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+}
+
+zsh_switch_prompt() {
+  case x"$ZSH_PROMPT_TYPE" in
+    x"0") zsh_set_prompt_type_1 ;;
+    x"1") zsh_set_prompt_type_0 ;;
+    *) ;;
+  esac
+}
+
+sw() {
+  zsh_switch_prompt
+}
+
+zsh_set_prompt_type_1
 # =====================================
 
 # zstyle ==============================
