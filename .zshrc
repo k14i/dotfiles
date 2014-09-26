@@ -684,6 +684,12 @@ alias rackhub="\ssh rackhuber@${LOCAL_ID}.rackbox.net -p 50118 -A -i $SSH_SECRET
 
 # Path ================================
 precmd() {
+  # tmux
+  if test `which tmux > /dev/null; echo $?` -eq 0; then
+    if test `tmux list-sessions > /dev/null 2>&1; echo $?` -eq 0; then
+      tmux set -qg status-right "Session:#S Pane:#P $(pwd) | #[fg=colour255,bg=colour234] #(~/bin/battery Discharging)#(~/bin/battery Charging)#(uptime | cut -d "," -f 3-) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
+    fi
+  fi
 }
 chpwd() {
 }
