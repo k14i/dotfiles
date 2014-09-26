@@ -192,6 +192,8 @@ export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=/Applications/Wireshark.app/Contents/Resources/bin:$PATH
 #export MANPATH=/opt/local/man:$MANPATH
 export PATH=/usr/texbin:$PATH
+export PATH=/usr/local/glusterfs/sbin:$PATH
+export PATH=/usr/local/erlang/bin:$PATH
 
 
 #######################################
