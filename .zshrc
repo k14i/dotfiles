@@ -277,6 +277,9 @@ alias vimr='vim -R'
 # =====================================
 
 # TMUX - The Terminal Multiplexer =====
+if test x`uname -s` \=\= x"Darwin"; then
+  alias tmux="tmux -f $HOME/.tmux-osx.conf"
+fi
 alias t='tmux'
 alias tmux-new-window='tmux new-window'
 alias tmux-kill-window='tmux kill-window'
