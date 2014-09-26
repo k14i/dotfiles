@@ -685,14 +685,31 @@ alias rackhub="\ssh rackhuber@${LOCAL_ID}.rackbox.net -p 50118 -A -i $SSH_SECRET
 #######################################
 
 # Path ================================
+zsh_set_tmux_for_prompt_type_0() {
+  #tmux set -qg status-right "Session:#S Pane:#P $(pwd) |#[fg=colour255,bg=colour234] #(~/bin/battery Discharging)#(~/bin/battery Charging)#(uptime | cut -d "," -f 3-) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
+  tmux set -qg status-left "S#S P#P ["
+  tmux set -qg status-right "] #[fg=colour255,bg=colour234]$(whoami)@$(hostname -s):$(pwd) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
+}
+
+zsh_set_tmux_for_prompt_type_1() {
+  #tmux set -qg status-left "#[fg=white,bg=black,bold]#I/#[fg=black,bg=colour202,bold]#20(whoami)@#h#[deafult]"
+  tmux set -qg status-left '#[fg=white,bg=black,bold]S#S I#I P#P #[fg=black,bg=colour202,bold]#h#[default] ['
+  tmux set -qg status-right "] #[fg=colour255,bg=colour234] #(~/bin/battery Discharging)#(~/bin/battery Charging)#(uptime | cut -d "," -f 3-) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
+}
+
 precmd() {
   # tmux
   if test `which tmux > /dev/null; echo $?` -eq 0; then
     if test `tmux list-sessions > /dev/null 2>&1; echo $?` -eq 0; then
-      tmux set -qg status-right "Session:#S Pane:#P $(pwd) | #[fg=colour255,bg=colour234] #(~/bin/battery Discharging)#(~/bin/battery Charging)#(uptime | cut -d "," -f 3-) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
+      case x"$ZSH_PROMPT_TYPE" in
+        x"0") zsh_set_tmux_for_prompt_type_0 ;;
+        x"1") zsh_set_tmux_for_prompt_type_1 ;;
+        *)    zsh_set_tmux_for_prompt_type_1 ;;
+      esac
     fi
   fi
 }
+
 chpwd() {
 }
 #export PATH_THELATESTDIR0=`pwd`
