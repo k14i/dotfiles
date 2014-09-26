@@ -694,7 +694,7 @@ zsh_set_tmux_for_prompt_type_0() {
 zsh_set_tmux_for_prompt_type_1() {
   #tmux set -qg status-left "#[fg=white,bg=black,bold]#I/#[fg=black,bg=colour202,bold]#20(whoami)@#h#[deafult]"
   tmux set -qg status-left '#[fg=white,bg=black,bold]S#S I#I P#P #[fg=black,bg=colour202,bold]#h#[default] ['
-  tmux set -qg status-right "] #[fg=colour255,bg=colour234] #(~/bin/battery Discharging)#(~/bin/battery Charging)#(uptime | cut -d "," -f 3- | sed 's/load averages: /Ld.Avg[/g')] #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
+  tmux set -qg status-right "] #[fg=colour255,bg=colour234] Batt[#(~/bin/battery Discharging)#(~/bin/battery Charging)]#(uptime | cut -d "," -f 3- | sed 's/load averages: /Ld.Avg[/g')] #[fg=colour234,bg=colour255,bold]%m-%d %H:%M %a#[default]"
 }
 
 precmd() {
