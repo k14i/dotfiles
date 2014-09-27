@@ -84,6 +84,7 @@ set display=uhex
 set laststatus=2
 set cmdheight=2
 set showcmd
+let &titleold=expand("%:p:h")
 set title
 
 set scrolloff=2
