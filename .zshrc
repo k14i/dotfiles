@@ -692,7 +692,7 @@ alias rackhub="\ssh rackhuber@${LOCAL_ID}.rackbox.net -p 50118 -A -i $SSH_SECRET
 zsh_set_tmux_for_prompt_type_0() {
   #tmux set -qg status-right "Session:#S Pane:#P $(pwd) |#[fg=colour255,bg=colour234] #(~/bin/battery Discharging)#(~/bin/battery Charging)#(uptime | cut -d "," -f 3-) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
   tmux set -qg status-left "S#S P#P ["
-  tmux set -qg status-right "] #[fg=colour255,bg=colour234]$(whoami)@$(hostname -s):$(pwd) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
+  tmux set -qg status-right "] #[fg=magenta,bg=colour234]$(whoami)#[default]@$(hostname -s):#[fg=green,bg=colour234]$(pwd) #[fg=colour234,bg=colour255,bold]%Y-%m-%d %H:%M %a#[default]"
 }
 
 zsh_set_tmux_for_prompt_type_1() {
