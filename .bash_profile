@@ -20,3 +20,6 @@ test -r /sw/bin/init.sh && . /sw/bin/init.sh
 
 # Android SDK
 export PATH=$PATH:/Users/keith/lib/android-sdk-mac_86/platform-tools
+
+# added by Anaconda 2.0.1 installer
+export PATH="/Users/keith/anaconda/bin:$PATH"
