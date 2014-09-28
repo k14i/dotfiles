@@ -116,7 +116,7 @@ setopt ignore_eof
 # Python ==============================
 case $KERNEL in
   Darwin)
-    if [ `which brew > /dev/null; echo $?` -eq 0 ]; then
+    if [ `which brew > /dev/null 2>&1; echo $?` -eq 0 ]; then
       export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
     fi
     ;;
@@ -703,7 +703,7 @@ zsh_set_tmux_for_prompt_type_1() {
 
 precmd() {
   # tmux
-  if test `which tmux > /dev/null; echo $?` -eq 0; then
+  if test `which tmux > /dev/null 2>&1; echo $?` -eq 0; then
     if test `tmux list-sessions > /dev/null 2>&1; echo $?` -eq 0; then
       case x"$ZSH_PROMPT_TYPE" in
         x"0") zsh_set_tmux_for_prompt_type_0 ;;
