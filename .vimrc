@@ -130,6 +130,12 @@ set softtabstop=2
 set expandtab
 set smarttab
 inoremap <C-Tab> <C-V><Tab>
+
+if expand("%:t") =~ ".*\.[ch]"
+  set noexpandtab
+  set tabstop=4
+  set shiftwidth=4
+endif
 " =====================================
 
 inoremap <Leader>date <C-R>=strftime('%A, %B %d, %Y')<CR>
