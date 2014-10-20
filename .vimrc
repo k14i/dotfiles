@@ -131,7 +131,7 @@ set expandtab
 set smarttab
 inoremap <C-Tab> <C-V><Tab>
 
-if expand("%:t") =~ ".*\.[ch]"
+if expand("%:t") =~ ".*\.[cham]"
   set noexpandtab
   set tabstop=4
   set shiftwidth=4
