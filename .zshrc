@@ -713,6 +713,10 @@ zsh_set_tmux_for_prompt_type_1() {
   tmux set -qg status-right "] #[fg=colour255,bg=colour234] Batt[#(~/bin/battery Discharging)#(~/bin/battery Charging)]#(uptime | cut -d "," -f 3- | sed 's/load averages: /Ld.Avg[/g')] #[fg=colour234,bg=colour255,bold]%m-%d %H:%M %a#[default]"
 }
 
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' formats '%r'
+
 precmd() {
   # tmux
   if test `which tmux > /dev/null 2>&1; echo $?` -eq 0; then
@@ -722,6 +726,11 @@ precmd() {
         x"1") zsh_set_tmux_for_prompt_type_1 ;;
         *)    zsh_set_tmux_for_prompt_type_1 ;;
       esac
+      if test x$ZSH_TMUX_RENAME_WINDOW_CONFIGURED != x1; then
+        LANG=en_US.UTF-8 vcs_info
+        [[ -n ${vcs_info_msg_0_} ]] && tmux rename-window $vcs_info_msg_0_
+        export ZSH_TMUX_RENAME_WINDOW_CONFIGURED=1
+      fi
     fi
   fi
 }

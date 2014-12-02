@@ -30,3 +30,4 @@ cookie
 history
 .netrwhist
 .bundle
+*.beam

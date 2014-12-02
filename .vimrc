@@ -130,6 +130,12 @@ set softtabstop=2
 set expandtab
 set smarttab
 inoremap <C-Tab> <C-V><Tab>
+
+if expand("%:t") =~ ".*\.[cham]"
+  set noexpandtab
+  set tabstop=4
+  set shiftwidth=4
+endif
 " =====================================
 
 inoremap <Leader>date <C-R>=strftime('%A, %B %d, %Y')<CR>
@@ -188,4 +194,14 @@ let chalice_exbrowser = 'openurl %URL% &'
 function! s:DoChalice()
   Chalice
 endfunction
+" =====================================
+
+" vim-indent-guides ===================
+" colorscheme molokai
+" let g:indent_guides_enable_on_vim_startup=1
+" let g:indent_guides_start_level=2
+" let g:indent_guides_auto_colors=0
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+" let g:indent_guides_guide_size=1
 " =====================================
