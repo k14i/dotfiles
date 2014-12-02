@@ -162,6 +162,18 @@ export RSENSE_HOME=$HOME'/lib/rsense-0.3'
 export EXENV_ROOT=/usr/local/var/exenv
 # =====================================
 
+# Go ==================================
+export GOROOT=$HOME/local/golang
+export GOPATH=$HOME/.golang
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+if test ! -d $GOROOT; then
+  mkdir -p $GOROOT/bin
+fi
+if test ! -d $GOPATH; then
+  mkdir -p $GOPATH/bin
+fi
+# =====================================
+
 # VMware ==============================
 export PATH=$PATH:/Applications/VMware\ OVF\ Tool
 # =====================================
