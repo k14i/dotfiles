@@ -163,7 +163,8 @@ export EXENV_ROOT=/usr/local/var/exenv
 # =====================================
 
 # Go ==================================
-export GOROOT=$HOME/local/golang
+#export GOROOT=$HOME/local/golang
+export GOROOT=/usr/lib/go
 export GOPATH=$HOME/.golang
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 if test ! -d $GOROOT; then
