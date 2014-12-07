@@ -125,14 +125,14 @@ case $KERNEL in
     if [ -d $dir ]; then
       export PYTHONPATH=$dir
     else
-      mkdir -p $dir
+      sudo mkdir -p $dir
       export PYTHONPATH=$dir
     fi
     dir="/usr/local/lib/python2.7/site-packages"
     if [ -d $dir ]; then
       export PYTHONPATH=$dir
     else
-      mkdir -p $dir
+      sudo mkdir -p $dir
       export PYTHONPATH=$dir
     fi
     ;;
@@ -167,9 +167,9 @@ export EXENV_ROOT=/usr/local/var/exenv
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/.golang
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-if test ! -d $GOROOT; then
-  mkdir -p $GOROOT/bin
-fi
+#if test ! -d $GOROOT; then
+#  mkdir -p $GOROOT/bin
+#fi
 if test ! -d $GOPATH; then
   mkdir -p $GOPATH/bin
 fi
