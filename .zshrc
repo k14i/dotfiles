@@ -8,7 +8,7 @@
 # Variables
 #######################################
 
-LOCAL_ID='keith'
+LOCAL_ID=`whoami`
 SSH_SECRET_KEY='~/.ssh/id_rsa'
 KERNEL=`uname -s`
 
