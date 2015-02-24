@@ -31,3 +31,7 @@ history
 .netrwhist
 .bundle
 *.beam
+.w3m/cookie
+.w3m/history
+.w3m/*.html
+.emacs.d/auto-save-list
