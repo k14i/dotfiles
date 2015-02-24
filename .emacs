@@ -270,12 +270,12 @@
 (require 'blank-mode)
 
 ;;;; Line numbering --------
-; http://www.emacswiki.org/LineNumbers
-(line-number-mode t)
-(require 'linum)
-(setq linum-format "%4d \u2502")
-;(setq linum-format "%4d")
-(global-linum-mode)
+;; http://www.emacswiki.org/LineNumbers
+;(line-number-mode t)
+;(require 'linum)
+;(setq linum-format "%4d \u2502")
+;;(setq linum-format "%4d")
+;(global-linum-mode)
 ; =====================================
 
 ; Others ==============================
