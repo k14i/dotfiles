@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/keith/src/elixir-keithseahus/lib/elixir'
+let g:netrw_dirhist_2='/Users/keith/Share/btsync/home/keith/dotfiles/.vim'
+let g:netrw_dirhist_3='/Users/keith/devel/github/keithseahus.github.io/sphinx/source/development/elixir/articles/advent_calendar/2014/using_phoenix'
+let g:netrw_dirhist_4='/home/keith/devel/github/dockerfiles/erlang-otp/ubuntu/14.04lts'
+let g:netrw_dirhist_5='/Users/keith/devel/ip-warp/had/trunk/src/hub'
