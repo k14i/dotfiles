@@ -414,6 +414,9 @@
 ;;;; Elixir mode --------
 (require 'elixir-mode)
 
+;;;; Julia mode ---------
+(require 'julia-mode)
+
 
 ;###########################################################
 ;# Assist Coding
