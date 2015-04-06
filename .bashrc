@@ -91,3 +91,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/glusterfs/sbin
 MANPATH=$MANPATH:/usr/local/glusterfs/share/man
 PATH=$PATH:/usr/lib64/fluent/ruby/bin
+
+docker-attach(){
+  PID=$(docker inspect --format {{.State.Pid}} $1)
+  nsenter --target $PID --mount --uts --ipc --net --pid
+}
