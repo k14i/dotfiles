@@ -113,6 +113,11 @@ setopt ignore_eof
 # PATH
 #######################################
 
+# $HOME/usr/local/{,s}bin =============
+export PATH=$PATH:$HOME/usr/local/bin
+export PATH=$PATH:$HOME/usr/local/sbin
+# =====================================
+
 # Python ==============================
 case $KERNEL in
   Darwin)
