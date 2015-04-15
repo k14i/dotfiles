@@ -113,6 +113,11 @@ setopt ignore_eof
 # PATH
 #######################################
 
+# $HOME/.brew/{,s}bin =================
+export PATH=$PATH:$HOME/.brew/bin
+export PATH=$PATH:$HOME/.brew/sbin
+# =====================================
+
 # $HOME/usr/local/{,s}bin =============
 export PATH=$PATH:$HOME/usr/local/bin
 export PATH=$PATH:$HOME/usr/local/sbin
