@@ -114,13 +114,19 @@ setopt ignore_eof
 #######################################
 
 # $HOME/.brew/{,s}bin =================
-export PATH=$PATH:$HOME/.brew/bin
-export PATH=$PATH:$HOME/.brew/sbin
+HOMEBREW_PATH=$HOME/.brew
+if test -d $HOMEBREW_PATH; then
+  export PATH=$PATH:$HOMEBREW_PATH/bin
+  export PATH=$PATH:$HOMEBREW_PATH/sbin
+fi
 # =====================================
 
 # $HOME/usr/local/{,s}bin =============
-export PATH=$PATH:$HOME/usr/local/bin
-export PATH=$PATH:$HOME/usr/local/sbin
+HOMEBREW_PATH=$HOME/usr/local
+if test -d $HOMEBREW_PATH; then
+  export PATH=$PATH:$HOMEBREW_PATH/bin
+  export PATH=$PATH:$HOMEBREW_PATH/sbin
+fi
 # =====================================
 
 # Python ==============================
@@ -165,18 +171,36 @@ export AWS_CREDENTIAL_FILE=$HOME'/bin/aws/credential'
 # =====================================
 
 # Rsense ==============================
-export RSENSE_HOME=$HOME'/lib/rsense-0.3'
+RSENSE_HOME=$HOME'/lib/rsense-0.3'
+if test -d ${RSENSE_HOME}; then
+  export RSENSE_HOME=${RSENSE_HOME}
+fi
 # =====================================
 
 # Elixir ==============================
-export EXENV_ROOT=/usr/local/var/exenv
+EXENV_ROOT=/usr/local/var/exenv
+if test -d ${EXENV_ROOT}; then
+  export EXENV_ROOT=${EXENV_ROOT}
+fi
+ELIXIR_BIN=$HOME/local/elixir/bin
+if test -d $ELIXIR_BIN; then
+  export PATH=$ELIXIR_BIN:$PATH
+fi
 # =====================================
 
 # Go ==================================
+GOROOT=/usr/lib/go
 #export GOROOT=$HOME/local/golang
-export GOROOT=/usr/lib/go
-export GOPATH=$HOME/.golang
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+if test -d ${GOROOT}; then
+  export GOROOT=${GOROOT}
+fi
+GOPATH=$HOME/.golang
+if test -d ${GOPATH}; then
+  export GOPATH=${GOPATH}
+fi
+if test -d ${GOROOT} && test -d ${GOPATH}; then
+  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
 #if test ! -d $GOROOT; then
 #  mkdir -p $GOROOT/bin
 #fi
@@ -186,25 +210,40 @@ fi
 # =====================================
 
 # VMware ==============================
-export PATH=$PATH:/Applications/VMware\ OVF\ Tool
+VMWARE_OVF_TOOL=/Applications/VMware\ OVF\ Tool
+if test -d ${VMWARE_OVF_TOOL}; then
+  export PATH=$PATH:${VMWARE_OVF_TOOL}
+fi
 # =====================================
 
 # GlusterFS ===========================
-export PATH=$PATH:/usr/local/glusterfs/sbin
-export MANPATH=$MANPATH:/usr/local/glusterfs/share/man
+GLUSTERFS=/usr/local/glusterfs
+if test -d ${GLUSTERFS}; then
+  export PATH=$PATH:${GLUSTERFS}/sbin
+  export MANPATH=$MANPATH:${GLUSTERFS}/share/man
+fi
+GLUSTERFS_SBIN=/usr/local/glusterfs/sbin
+if test -d ${GLUSTERFS_SBIN}; then
+  export PATH=${GLUSTERFS_SBIN}:$PATH
+fi
 # =====================================
 
 # Fluentd/td-agent ====================
-export PATH=$PATH:/usr/lib64/fluent/ruby/bin
+FLUENTD_BIN=/usr/lib64/fluent/ruby/bin
+export PATH=$PATH:$FLUENTD_BIN
 # =====================================
 
 # rbenv ===============================
-eval "$(rbenv init -)"
+if test `rbenv --version > /dev/null; echo $?` -eq 0; then
+  eval "$(rbenv init -)"
+fi
 # =====================================
 
 # RVM =================================
-export PATH=$PATH:$HOME/.rvm/gems/ruby-2.1.3/bin
-export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
+if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
+  export PATH=$PATH:$HOME/.rvm/gems/ruby-2.1.3/bin
+  export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
+fi
 # =====================================
 
 #export PATH=/Developer/usr/bin:$PATH
@@ -212,14 +251,12 @@ export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
 #export PATH=/usr/local/Cellar/elixir/bin:$PATH
 #export PATH=$HOME/Dropbox/usr/local/bin:$PATH
-export PATH=$HOME/local/elixir/bin:$PATH
 export PATH=$HOME/Share/btsync/bin:$PATH
 export PATH=$HOME/Share/Dropbox/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=/Applications/Wireshark.app/Contents/Resources/bin:$PATH
 #export MANPATH=/opt/local/man:$MANPATH
 export PATH=/usr/texbin:$PATH
-export PATH=/usr/local/glusterfs/sbin:$PATH
 export PATH=/usr/local/erlang/bin:$PATH
 
 
@@ -304,30 +341,32 @@ alias vimr='vim -R'
 # =====================================
 
 # TMUX - The Terminal Multiplexer =====
-tmux_osx_conf="$HOME/.tmux-osx.conf"
-if test x`uname -s` \=\= x"Darwin" && test -f $tmux_osx_conf; then
-  alias tmux="tmux -f $tmux_osx_conf"
+if test `tmux -V > /dev/null 2>&1; echo $?` -eq 0; then
+  tmux_osx_conf="$HOME/.tmux-osx.conf"
+  if test x`uname -s` \=\= x"Darwin" && test -f $tmux_osx_conf; then
+    alias tmux="tmux -f $tmux_osx_conf"
+  fi
+  alias t='tmux'
+  alias tmux-new-window='tmux new-window'
+  alias tmux-kill-window='tmux kill-window'
+  alias tmux-new-session='tmux new'
+  alias tmux-attach-session='tmux attach'
+  alias tmux-detach-client='tmux detach'
+  alias tmux-kill-server='tmux kill-server'
+  alias tmux-kill-session='tmux kill-session'
+  alias tmux-list-clients='tmux lsc'
+  alias tmux-list-commands='tmux lscm'
+  alias tmux-list-sessions='tmux ls'
+  alias tmux-lock-client='tmux lockc'
+  alias tmux-lock-session='tmux locks'
+  alias tmux-refresh-client='tmux refresh'
+  alias tmux-rename-session='tmux rename'
+  alias tmux-show-messages='tmux showmsgs'
+  alias tmux-source-file='tmux source'
+  alias tmux-start-server='tmux start'
+  alias tmux-suspend-client='tmux suspendc'
+  alias tmux-switch-client='tmux switchc'
 fi
-alias t='tmux'
-alias tmux-new-window='tmux new-window'
-alias tmux-kill-window='tmux kill-window'
-alias tmux-new-session='tmux new'
-alias tmux-attach-session='tmux attach'
-alias tmux-detach-client='tmux detach'
-alias tmux-kill-server='tmux kill-server'
-alias tmux-kill-session='tmux kill-session'
-alias tmux-list-clients='tmux lsc'
-alias tmux-list-commands='tmux lscm'
-alias tmux-list-sessions='tmux ls'
-alias tmux-lock-client='tmux lockc'
-alias tmux-lock-session='tmux locks'
-alias tmux-refresh-client='tmux refresh'
-alias tmux-rename-session='tmux rename'
-alias tmux-show-messages='tmux showmsgs'
-alias tmux-source-file='tmux source'
-alias tmux-start-server='tmux start'
-alias tmux-suspend-client='tmux suspendc'
-alias tmux-switch-client='tmux switchc'
 # =====================================
 
 # GNU Global ==========================
@@ -337,14 +376,16 @@ alias mkgtags-cpp='GTAGSFORCECPP=1 $(maketags)'
 # =====================================
 
 # rvm =================================
-alias rvm-get-head='rvm get head'
-alias rvm-get-stable='rvm get stable'
-alias rvm-list='rvm list'
-alias rvm-list-r='rvm list -r'
-alias rvm-use-193='rvm use 1.9.3'
-alias rvm-use-193-default='rvm use 1.9.3 --default'
-alias rvm-use-200='rvm use 2.0.0'
-alias rvm-use-200-default='rvm use 2.0.0 --default'
+if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
+  alias rvm-get-head='rvm get head'
+  alias rvm-get-stable='rvm get stable'
+  alias rvm-list='rvm list'
+  alias rvm-list-r='rvm list -r'
+  alias rvm-use-193='rvm use 1.9.3'
+  alias rvm-use-193-default='rvm use 1.9.3 --default'
+  alias rvm-use-200='rvm use 2.0.0'
+  alias rvm-use-200-default='rvm use 2.0.0 --default'
+fi
 # =====================================
 
 # rails ===============================
@@ -370,58 +411,62 @@ alias rails-env-development-bundle-exec-spork='RAILS_ENV=development bundle exec
 # =====================================
 
 # git =================================
-#alias git-push-current-branch='git push origin \`git status | grep \'On branch\' | awk \'\{print \$4\}\'\`'
-alias git-init='git init'
-alias git-clone='git clone'
-alias git-fsck='git fsck'
-alias git-fsck-full='git fsck --full'
-alias git-gc='git gc'
-alias git-status='git status'
-alias git-add='git add'
-alias git-diff='git diff'
-alias git-commit='git commit'
-alias git-commit-m='git commit -m'
-alias git-commit-c-ORIG_HEAD='git commit -c ORIG_HEAD'
-alias git-commit-c-ORIG_HEAD-m='git commit -c ORIG_HEAD -m'
-alias git-commit-amend='git commit --amend'
-alias git-commit-amend-m='git commit --amend -m'
-alias git-log='git log'
-alias git-push='git push'
-alias git-push-origin-master='git push origin master'
-alias git-push-origin-develop='git push origin develop'
-alias git-push-origin-pre_develop='git push origin pre_develop'
-alias git-fetch='git fetch'
-alias git-pull='git pull'
-alias git-pull-rebase='git pull --rebase'
-alias git-rebase='git rebase'
-alias git-branch='git branch'
-alias git-checkout='git checkout'
-alias git-checkout-b='git checkout -b'
-alias git-show-branch='git show-branch'
-alias git-merge='git merge'
-alias git-merge-no-ff='git merge --no-ff'
-alias git-reset='git reset'
-alias git-reset-hard-HEAD='git reset --hard HEAD'
-alias git-reset-soft-HEAD='git reset --soft HEAD'
-alias git-diff-ORIG_HEAD='git diff ORIG_HEAD'
-alias git-revert='git revert'
-alias git-tag='git tag'
-alias git-stash='git stash'
-alias git-stash-pop='git stash pop'
-alias git-stash-list='git stash list'
+if test `git --version > /dev/null 2>&1; echo $?` -eq 0; then
+  #alias git-push-current-branch='git push origin \`git status | grep \'On branch\' | awk \'\{print \$4\}\'\`'
+  alias git-init='git init'
+  alias git-clone='git clone'
+  alias git-fsck='git fsck'
+  alias git-fsck-full='git fsck --full'
+  alias git-gc='git gc'
+  alias git-status='git status'
+  alias git-add='git add'
+  alias git-diff='git diff'
+  alias git-commit='git commit'
+  alias git-commit-m='git commit -m'
+  alias git-commit-c-ORIG_HEAD='git commit -c ORIG_HEAD'
+  alias git-commit-c-ORIG_HEAD-m='git commit -c ORIG_HEAD -m'
+  alias git-commit-amend='git commit --amend'
+  alias git-commit-amend-m='git commit --amend -m'
+  alias git-log='git log'
+  alias git-push='git push'
+  alias git-push-origin-master='git push origin master'
+  alias git-push-origin-develop='git push origin develop'
+  alias git-push-origin-pre_develop='git push origin pre_develop'
+  alias git-fetch='git fetch'
+  alias git-pull='git pull'
+  alias git-pull-rebase='git pull --rebase'
+  alias git-rebase='git rebase'
+  alias git-branch='git branch'
+  alias git-checkout='git checkout'
+  alias git-checkout-b='git checkout -b'
+  alias git-show-branch='git show-branch'
+  alias git-merge='git merge'
+  alias git-merge-no-ff='git merge --no-ff'
+  alias git-reset='git reset'
+  alias git-reset-hard-HEAD='git reset --hard HEAD'
+  alias git-reset-soft-HEAD='git reset --soft HEAD'
+  alias git-diff-ORIG_HEAD='git diff ORIG_HEAD'
+  alias git-revert='git revert'
+  alias git-tag='git tag'
+  alias git-stash='git stash'
+  alias git-stash-pop='git stash pop'
+  alias git-stash-list='git stash list'
+fi
 # =====================================
 
 # brew ================================
-alias brew-update='brew update'
-alias brew-upgrade='brew upgrade'
-alias brew-install='brew install'
-alias brew-uninstall='brew uninstall'
-alias brew-search='brew search'
-alias brew-list='brew list'
-alias brew-update='brew update'
-alias brew-upgrade='brew upgrade'
-alias brew-info='brew info'
-alias brew-doctor='brew doctor'
+if test `brew --version > /dev/null 2>&1; echo $?` -eq 0; then
+  alias brew-update='brew update'
+  alias brew-upgrade='brew upgrade'
+  alias brew-install='brew install'
+  alias brew-uninstall='brew uninstall'
+  alias brew-search='brew search'
+  alias brew-list='brew list'
+  alias brew-update='brew update'
+  alias brew-upgrade='brew upgrade'
+  alias brew-info='brew info'
+  alias brew-doctor='brew doctor'
+fi
 # =====================================
 
 # cloudmonkey =========================
