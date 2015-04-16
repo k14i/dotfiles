@@ -198,6 +198,10 @@ export MANPATH=$MANPATH:/usr/local/glusterfs/share/man
 export PATH=$PATH:/usr/lib64/fluent/ruby/bin
 # =====================================
 
+# rbenv ===============================
+eval "$(rbenv init -)"
+# =====================================
+
 # RVM =================================
 export PATH=$PATH:$HOME/.rvm/gems/ruby-2.1.3/bin
 export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
