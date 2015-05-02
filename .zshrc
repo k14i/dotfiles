@@ -178,9 +178,14 @@ fi
 # =====================================
 
 # Elixir ==============================
-EXENV_ROOT=/usr/local/var/exenv
+#EXENV_ROOT=/usr/local/var/exenv
+#if test -d ${EXENV_ROOT}; then
+#  export EXENV_ROOT=${EXENV_ROOT}
+#fi
+EXENV_ROOT=$HOME/.exenv
 if test -d ${EXENV_ROOT}; then
   export EXENV_ROOT=${EXENV_ROOT}
+  export PATH=${EXENV_ROOT}/bin:$PATH
 fi
 ELIXIR_BIN=$HOME/local/elixir/bin
 if test -d $ELIXIR_BIN; then
