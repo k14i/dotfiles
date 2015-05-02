@@ -187,6 +187,9 @@ if test -d ${EXENV_ROOT}; then
   export EXENV_ROOT=${EXENV_ROOT}
   export PATH=${EXENV_ROOT}/bin:$PATH
 fi
+if test `exenv > /dev/null; echo $?` -eq 0; then
+  eval "$(exenv init -)"
+fi
 ELIXIR_BIN=$HOME/local/elixir/bin
 if test -d $ELIXIR_BIN; then
   export PATH=$ELIXIR_BIN:$PATH
