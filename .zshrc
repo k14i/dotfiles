@@ -244,7 +244,7 @@ export PATH=$PATH:$FLUENTD_BIN
 # rbenv ===============================
 RBENV=$HOME/.rbenv
 if test -d $RBENV; then
-  export PATH=$PATH:$RBENV
+  export PATH=$PATH:$RBENV/bin
 fi
 if test `rbenv --version > /dev/null 2>&1; echo $?` -eq 0; then
   eval "$(rbenv init -)"
