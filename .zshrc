@@ -121,8 +121,16 @@ if test -d $HOMEBREW_PATH; then
 fi
 # =====================================
 
-# $HOME/usr/local/{,s}bin =============
-HOMEBREW_PATH=$HOME/usr/local
+# # $HOME/usr/local/{,s}bin =============
+# HOMEBREW_PATH=$HOME/usr/local
+# if test -d $HOMEBREW_PATH; then
+#   export PATH=$PATH:$HOMEBREW_PATH/bin
+#   export PATH=$PATH:$HOMEBREW_PATH/sbin
+# fi
+# # =====================================
+
+# /usr/local/{,s}bin =================
+HOMEBREW_PATH=/usr/local
 if test -d $HOMEBREW_PATH; then
   export PATH=$PATH:$HOMEBREW_PATH/bin
   export PATH=$PATH:$HOMEBREW_PATH/sbin
@@ -341,8 +349,15 @@ esac
 # =====================================
 
 # emacs ===============================
-alias emacs='/usr/bin/emacs -nw'
-alias e='/usr/bin/emacs -nw'
+if test -f $HOMEBREW_PATH/bin/emacs; then
+  EMACS=$HOMEBREW_PATH/bin/emacs
+elif test -f /usr/bin/emacs; then
+  EMACS=/usr/bin/emacs
+fi
+#alias emacs='/usr/bin/emacs -nw'
+#alias e='/usr/bin/emacs -nw'
+alias emacs=$EMACS
+alias e=$EMACS
 export EDITOR=emacs
 # =====================================
 
