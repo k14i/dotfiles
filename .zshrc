@@ -252,7 +252,7 @@ export PATH=$FLUENTD_BIN:$PATH
 # pyenv ===============================
 PYENV=$HOME/.pyenv
 if test -d $PYENV; then
-  export PATH=$PYENV/shims
+  export PATH=$PYENV/shims:$PATH
 fi
 # =====================================
 
