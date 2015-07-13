@@ -249,6 +249,13 @@ FLUENTD_BIN=/usr/lib64/fluent/ruby/bin
 export PATH=$PATH:$FLUENTD_BIN
 # =====================================
 
+# pyenv ===============================
+PYENV=$HOME/.pyenv
+if test -d $PYENV; then
+  export PATH=$PYENV/shims
+fi
+# =====================================
+
 # rbenv ===============================
 RBENV=$HOME/.rbenv
 if test -d $RBENV; then
