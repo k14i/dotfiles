@@ -116,24 +116,24 @@ setopt ignore_eof
 # $HOME/.brew/{,s}bin =================
 HOMEBREW_PATH=$HOME/.brew
 if test -d $HOMEBREW_PATH; then
-  export PATH=$PATH:$HOMEBREW_PATH/bin
-  export PATH=$PATH:$HOMEBREW_PATH/sbin
+  export PATH=$HOMEBREW_PATH/bin:$PATH
+  export PATH=$HOMEBREW_PATH/sbin:$PATH
 fi
 # =====================================
 
 # # $HOME/usr/local/{,s}bin =============
 # HOMEBREW_PATH=$HOME/usr/local
 # if test -d $HOMEBREW_PATH; then
-#   export PATH=$PATH:$HOMEBREW_PATH/bin
-#   export PATH=$PATH:$HOMEBREW_PATH/sbin
+#   export PATH=$HOMEBREW_PATH/bin:$PATH
+#   export PATH=$HOMEBREW_PATH/sbin:$PATH
 # fi
 # # =====================================
 
 # /usr/local/{,s}bin =================
 HOMEBREW_PATH=/usr/local
 if test -d $HOMEBREW_PATH; then
-  export PATH=$PATH:$HOMEBREW_PATH/bin
-  export PATH=$PATH:$HOMEBREW_PATH/sbin
+  export PATH=$HOMEBREW_PATH/bin:$PATH
+  export PATH=$HOMEBREW_PATH/sbin:$PATH
 fi
 # =====================================
 
@@ -173,7 +173,7 @@ export JAVA_HOME='/usr'
 
 # AWS CLI =============================
 export AWS_RDS_HOME=$HOME'/bin/aws/cli/rds/current'
-export PATH=$PATH:$AWS_RDS_HOME'/bin'
+export PATH=$AWS_RDS_HOME'/bin':$PATH
 export EC2_REGION='ap-northeast-1'
 export AWS_CREDENTIAL_FILE=$HOME'/bin/aws/credential'
 # =====================================
@@ -215,7 +215,7 @@ if test -d ${GOPATH}; then
   export GOPATH=${GOPATH}
 fi
 if test -d ${GOROOT} && test -d ${GOPATH}; then
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+  export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 fi
 #if test ! -d $GOROOT; then
 #  mkdir -p $GOROOT/bin
@@ -228,14 +228,14 @@ fi
 # VMware ==============================
 VMWARE_OVF_TOOL=/Applications/VMware\ OVF\ Tool
 if test -d ${VMWARE_OVF_TOOL}; then
-  export PATH=$PATH:${VMWARE_OVF_TOOL}
+  export PATH=${VMWARE_OVF_TOOL}:$PATH
 fi
 # =====================================
 
 # GlusterFS ===========================
 GLUSTERFS=/usr/local/glusterfs
 if test -d ${GLUSTERFS}; then
-  export PATH=$PATH:${GLUSTERFS}/sbin
+  export PATH=${GLUSTERFS}/sbin:$PATH
   export MANPATH=$MANPATH:${GLUSTERFS}/share/man
 fi
 GLUSTERFS_SBIN=/usr/local/glusterfs/sbin
@@ -246,7 +246,7 @@ fi
 
 # Fluentd/td-agent ====================
 FLUENTD_BIN=/usr/lib64/fluent/ruby/bin
-export PATH=$PATH:$FLUENTD_BIN
+export PATH=$FLUENTD_BIN:$PATH
 # =====================================
 
 # pyenv ===============================
@@ -259,7 +259,7 @@ fi
 # rbenv ===============================
 RBENV=$HOME/.rbenv
 if test -d $RBENV; then
-  export PATH=$PATH:$RBENV/bin
+  export PATH=$RBENV/bin:$PATH
 fi
 if test `rbenv --version > /dev/null 2>&1; echo $?` -eq 0; then
   eval "$(rbenv init -)"
@@ -268,8 +268,8 @@ fi
 
 # RVM =================================
 if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
-  export PATH=$PATH:$HOME/.rvm/gems/ruby-2.1.3/bin
-  export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
+  export PATH=$HOME/.rvm/gems/ruby-2.1.3/bin:$PATH
+  export PATH=$HOME/.rvm/gems/rbx-head/bin:$PATH
 fi
 # =====================================
 
