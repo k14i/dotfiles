@@ -179,6 +179,11 @@ execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
 " =====================================
 
 " GNU Global ==========================
+map <C-g> :Gtags 
+map <C-h> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
 let GtagsCscope_Auto_Load = 1
 let GtagsCscope_Auto_Map = 1
 let GtagsCscope_Quiet = 1
