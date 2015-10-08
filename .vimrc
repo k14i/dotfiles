@@ -92,7 +92,9 @@ set scrolloff=2
 set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
 
 set cursorline
+highlight CursorLine term=reverse ctermbg=0 guifg=#000000 guibg=#000000
 set cursorcolumn
+highlight CursorColumn term=reverse ctermbg=0 guifg=#000000 guibg=#000000
 
 " format.vim ==========================
 let format_allow_over_tw = 0
