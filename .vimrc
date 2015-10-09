@@ -94,7 +94,7 @@ set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ 
 set cursorline
 "highlight CursorLine term=reverse ctermbg=0 guifg=#F0F0F0 guibg=#F0F0F0
 set cursorcolumn
-"highlight CursorColumn term=reverse ctermbg=7 guifg=#000000 guibg=#000000
+highlight CursorColumn term=reverse ctermbg=0 guifg=#000000 guibg=#000000
 
 " format.vim ==========================
 let format_allow_over_tw = 0
