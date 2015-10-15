@@ -273,6 +273,13 @@ if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
 fi
 # =====================================
 
+# LightTable ==========================
+LT_HOME=${HOME}/Share/iCloud\ Drive/Users/${LOCAL_ID}/Applications/LightTable
+if test -d $LT_HOME; then
+  export LT_HOME
+fi
+# =====================================
+
 #export PATH=/Developer/usr/bin:$PATH
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 #export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
