@@ -274,7 +274,7 @@ fi
 # =====================================
 
 # LightTable ==========================
-LT_HOME=${HOME}/Share/iCloud\ Drive/Users/${LOCAL_ID}/Applications/LightTable
+LT_HOME="${HOME}/Share/iCloud\ Drive/Users/${LOCAL_ID}/Applications/LightTable"
 if test -d $LT_HOME; then
   export LT_HOME
 fi
