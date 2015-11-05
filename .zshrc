@@ -798,6 +798,7 @@ alias mosh-mba11="mosh mba11-${LOCAL_ID}.local"
 alias mosh-infinibridge.net='mosh infinibridge.net'
 alias mosh-infinibridge.mobi='mosh infinibridge.mobi'
 alias rackhub="\ssh rackhuber@${LOCAL_ID}.rackbox.net -p 50118 -A -i $SSH_SECRET_KEY"
+alias :q="exit"
 # =====================================
 
 
