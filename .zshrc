@@ -249,6 +249,16 @@ FLUENTD_BIN=/usr/lib64/fluent/ruby/bin
 export PATH=$FLUENTD_BIN:$PATH
 # =====================================
 
+# anyenv ==============================
+ANYENV=$HOME/.anyenv
+if test -d $ANYENV; then
+  export PATH=$ANYENV/shims:$ANYENV/bin:$PATH
+fi
+if test `anyenv --version > /dev/null 2>&1; echo $?` -eq 0; then
+  eval "$(anyenv init -)"
+fi
+# =====================================
+
 # pyenv ===============================
 PYENV=$HOME/.pyenv
 if test -d $PYENV; then
