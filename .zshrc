@@ -323,6 +323,10 @@ alias moshx="mosh --ssh='TERM=xterm ssh -X -i $SSH_SECRET_KEY'"
 alias mosh="mosh --ssh='TERM=xterm ssh -i $SSH_SECRET_KEY'"
 # =====================================
 
+# autossh =============================
+alias autossh="autossh -M0 -f -N "
+# =====================================
+
 # global aliases ======================
 alias -g G='| grep'
 alias -g L='| less'
