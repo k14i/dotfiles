@@ -308,8 +308,8 @@ PATHS=(
   /usr/local/erlang/bin
   /Applications/Wireshark.app/Contents/Resources/bin
 )
-for path in ${PATHS[@]}; do
-  if test -d $BIN_PATH; then export PATH=$path:$PATH; fi
+for i in ${PATHS[@]}; do
+  if test -d $i; then export PATH=$i:$PATH; fi
 done
 #export MANPATH=/opt/local/man:$MANPATH
 
