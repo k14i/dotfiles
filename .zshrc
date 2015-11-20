@@ -195,7 +195,7 @@ if test -d ${EXENV_ROOT}; then
   export EXENV_ROOT=${EXENV_ROOT}
   export PATH=${EXENV_ROOT}/bin:$PATH
 fi
-if test `exenv > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which exenv > /dev/null 2>&1; echo $?` -eq 0; then
   eval "$(exenv init -)"
 fi
 ELIXIR_BIN=$HOME/local/elixir/bin
@@ -254,7 +254,7 @@ ANYENV=$HOME/.anyenv
 if test -d $ANYENV; then
   export PATH=$ANYENV/shims:$ANYENV/bin:$PATH
 fi
-if test `anyenv --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which anyenv > /dev/null 2>&1; echo $?` -eq 0; then
   eval "$(anyenv init -)"
 fi
 # =====================================
@@ -271,13 +271,13 @@ RBENV=$HOME/.rbenv
 if test -d $RBENV; then
   export PATH=$RBENV/bin:$PATH
 fi
-if test `rbenv --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which rbenv > /dev/null 2>&1; echo $?` -eq 0; then
   eval "$(rbenv init -)"
 fi
 # =====================================
 
 # RVM =================================
-if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which rvm > /dev/null 2>&1; echo $?` -eq 0; then
   export PATH=$HOME/.rvm/gems/ruby-2.1.3/bin:$PATH
   export PATH=$HOME/.rvm/gems/rbx-head/bin:$PATH
 fi
@@ -294,18 +294,24 @@ if test -d $LT_HOME; then
 fi
 # =====================================
 
-#export PATH=/Developer/usr/bin:$PATH
-#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-#export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
-#export PATH=/usr/local/Cellar/elixir/bin:$PATH
-#export PATH=$HOME/Dropbox/usr/local/bin:$PATH
-export PATH=$HOME/Share/btsync/bin:$PATH
-export PATH=$HOME/Share/Dropbox/bin:$PATH
-export PATH=/usr/local/sbin:/usr/local/bin:$PATH
-export PATH=/Applications/Wireshark.app/Contents/Resources/bin:$PATH
+PATHS=(
+#  /Developer/usr/bin
+#  /opt/local/bin:/opt/local/sbin
+#  /usr/local/lib/erlang/lib/elixir/bin
+#  /usr/local/Cellar/elixir/bin
+#  $HOME/Dropbox/usr/local/bin
+  $HOME/Share/btsync/bin
+  $HOME/Share/Dropbox/bin
+  /usr/local/sbin
+  /usr/local/bin
+  /usr/texbin
+  /usr/local/erlang/bin
+  /Applications/Wireshark.app/Contents/Resources/bin
+)
+for path in ${PATHS[@]}; do
+  if test -d $BIN_PATH; then export PATH=$path:$PATH; fi
+done
 #export MANPATH=/opt/local/man:$MANPATH
-export PATH=/usr/texbin:$PATH
-export PATH=/usr/local/erlang/bin:$PATH
 
 
 #######################################
