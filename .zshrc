@@ -86,13 +86,13 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 zshaddhistory() {
-local line=${1%%$'\n'}
-local cmd=${line%% *}
+  local line=${1%%$'\n'}
+  local cmd=${line%% *}
 
-[[ ${#line} -ge 5
-&& ${cmd} != (l[salf])
-&& ${cmd} != (man)
-]]
+  [[ ${#line} -ge 5
+    && ${cmd} != (l[salf])
+    && ${cmd} != (man)
+  ]]
 }
 
 
@@ -406,7 +406,7 @@ alias vimr='vim -R'
 # =====================================
 
 # TMUX - The Terminal Multiplexer =====
-if test `tmux -V > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which tmux > /dev/null 2>&1; echo $?` -eq 0; then
   tmux_osx_conf="$HOME/.tmux-osx.conf"
   if test x`uname -s` \=\= x"Darwin" && test -f $tmux_osx_conf; then
     alias tmux="tmux -f $tmux_osx_conf"
@@ -441,7 +441,7 @@ alias mkgtags-cpp='GTAGSFORCECPP=1 $(maketags)'
 # =====================================
 
 # rvm =================================
-if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which rvm > /dev/null 2>&1; echo $?` -eq 0; then
   alias rvm-get-head='rvm get head'
   alias rvm-get-stable='rvm get stable'
   alias rvm-list='rvm list'
@@ -476,7 +476,7 @@ alias rails-env-development-bundle-exec-spork='RAILS_ENV=development bundle exec
 # =====================================
 
 # git =================================
-if test `git --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which git > /dev/null 2>&1; echo $?` -eq 0; then
   #alias git-push-current-branch='git push origin \`git status | grep \'On branch\' | awk \'\{print \$4\}\'\`'
   alias git-init='git init'
   alias git-clone='git clone'
@@ -520,7 +520,7 @@ fi
 # =====================================
 
 # brew ================================
-if test `brew --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which brew > /dev/null 2>&1; echo $?` -eq 0; then
   alias brew-update='brew update'
   alias brew-upgrade='brew upgrade'
   alias brew-install='brew install'
@@ -802,10 +802,50 @@ alias rsync-local="rsync -v --progress --rsh='rsh'"
 alias rsync-local-quiet="rsync -q --ignore-errors --rsh='rsh'"
 alias rsync-standard="rsync -vz --progress"
 alias rsync-standard-quiet="rsync -zq --ignore-errors"
-alias rsync-full="rsync -vz --progress -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-local="rsync --rsh='rsh' -v --progress -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-quiet="rsync -zq -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-local-quiet="rsync --rsh='rsh' -q -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full="rsync \
+  -vz \
+  --progress \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full-local="rsync \
+  --rsh='rsh' \
+  -v \
+  --progress \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full-quiet="rsync \
+  -zq \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full-local-quiet="rsync \
+  --rsh='rsh' \
+  -q \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
 alias du="du -sh"
 alias df="df -h"
 alias j="jobs -l"
@@ -850,7 +890,7 @@ precmd() {
       case x"$ZSH_PROMPT_TYPE" in
         x"0") zsh_set_tmux_for_prompt_type_0 ;;
         x"1") zsh_set_tmux_for_prompt_type_1 ;;
-        *)    zsh_set_tmux_for_prompt_type_1 ;;
+        *   ) zsh_set_tmux_for_prompt_type_1 ;;
       esac
       if test x$ZSH_TMUX_RENAME_WINDOW_CONFIGURED != x1; then
         LANG=en_US.UTF-8 vcs_info
