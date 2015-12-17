@@ -225,6 +225,10 @@ if test ! -d $GOPATH; then
 fi
 # =====================================
 
+# Crystal =============================
+CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
+# =====================================
+
 # VMware ==============================
 VMWARE_OVF_TOOL=/Applications/VMware\ OVF\ Tool
 if test -d ${VMWARE_OVF_TOOL}; then
