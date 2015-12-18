@@ -226,6 +226,13 @@ fi
 # =====================================
 
 # Crystal =============================
+CRENV_ROOT=$HOME/.crenv
+if test -d ${CRENV_ROOT}; then
+  export PATH=${CRENV_ROOT}/bin:$PATH
+fi
+if test `which crenv > /dev/null 2>&1; echo $?` -eq 0; then
+  eval "$(crenv init -)"
+fi
 CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
 # =====================================
 
