@@ -86,13 +86,13 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 zshaddhistory() {
-local line=${1%%$'\n'}
-local cmd=${line%% *}
+  local line=${1%%$'\n'}
+  local cmd=${line%% *}
 
-[[ ${#line} -ge 5
-&& ${cmd} != (l[salf])
-&& ${cmd} != (man)
-]]
+  [[ ${#line} -ge 5
+    && ${cmd} != (l[salf])
+    && ${cmd} != (man)
+  ]]
 }
 
 
@@ -116,24 +116,24 @@ setopt ignore_eof
 # $HOME/.brew/{,s}bin =================
 HOMEBREW_PATH=$HOME/.brew
 if test -d $HOMEBREW_PATH; then
-  export PATH=$PATH:$HOMEBREW_PATH/bin
-  export PATH=$PATH:$HOMEBREW_PATH/sbin
+  export PATH=$HOMEBREW_PATH/bin:$PATH
+  export PATH=$HOMEBREW_PATH/sbin:$PATH
 fi
 # =====================================
 
 # # $HOME/usr/local/{,s}bin =============
 # HOMEBREW_PATH=$HOME/usr/local
 # if test -d $HOMEBREW_PATH; then
-#   export PATH=$PATH:$HOMEBREW_PATH/bin
-#   export PATH=$PATH:$HOMEBREW_PATH/sbin
+#   export PATH=$HOMEBREW_PATH/bin:$PATH
+#   export PATH=$HOMEBREW_PATH/sbin:$PATH
 # fi
 # # =====================================
 
 # /usr/local/{,s}bin =================
 HOMEBREW_PATH=/usr/local
 if test -d $HOMEBREW_PATH; then
-  export PATH=$PATH:$HOMEBREW_PATH/bin
-  export PATH=$PATH:$HOMEBREW_PATH/sbin
+  export PATH=$HOMEBREW_PATH/bin:$PATH
+  export PATH=$HOMEBREW_PATH/sbin:$PATH
 fi
 # =====================================
 
@@ -173,7 +173,7 @@ export JAVA_HOME='/usr'
 
 # AWS CLI =============================
 export AWS_RDS_HOME=$HOME'/bin/aws/cli/rds/current'
-export PATH=$PATH:$AWS_RDS_HOME'/bin'
+export PATH=$AWS_RDS_HOME'/bin':$PATH
 export EC2_REGION='ap-northeast-1'
 export AWS_CREDENTIAL_FILE=$HOME'/bin/aws/credential'
 # =====================================
@@ -195,7 +195,7 @@ if test -d ${EXENV_ROOT}; then
   export EXENV_ROOT=${EXENV_ROOT}
   export PATH=${EXENV_ROOT}/bin:$PATH
 fi
-if test `exenv > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which exenv > /dev/null 2>&1; echo $?` -eq 0; then
   eval "$(exenv init -)"
 fi
 ELIXIR_BIN=$HOME/local/elixir/bin
@@ -215,7 +215,7 @@ if test -d ${GOPATH}; then
   export GOPATH=${GOPATH}
 fi
 if test -d ${GOROOT} && test -d ${GOPATH}; then
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+  export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 fi
 #if test ! -d $GOROOT; then
 #  mkdir -p $GOROOT/bin
@@ -225,17 +225,28 @@ if test ! -d $GOPATH; then
 fi
 # =====================================
 
+# Crystal =============================
+CRENV_ROOT=$HOME/.crenv
+if test -d ${CRENV_ROOT}; then
+  export PATH=${CRENV_ROOT}/bin:$PATH
+fi
+if test `which crenv > /dev/null 2>&1; echo $?` -eq 0; then
+  eval "$(crenv init -)"
+fi
+CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
+# =====================================
+
 # VMware ==============================
 VMWARE_OVF_TOOL=/Applications/VMware\ OVF\ Tool
 if test -d ${VMWARE_OVF_TOOL}; then
-  export PATH=$PATH:${VMWARE_OVF_TOOL}
+  export PATH=${VMWARE_OVF_TOOL}:$PATH
 fi
 # =====================================
 
 # GlusterFS ===========================
 GLUSTERFS=/usr/local/glusterfs
 if test -d ${GLUSTERFS}; then
-  export PATH=$PATH:${GLUSTERFS}/sbin
+  export PATH=${GLUSTERFS}/sbin:$PATH
   export MANPATH=$MANPATH:${GLUSTERFS}/share/man
 fi
 GLUSTERFS_SBIN=/usr/local/glusterfs/sbin
@@ -246,38 +257,72 @@ fi
 
 # Fluentd/td-agent ====================
 FLUENTD_BIN=/usr/lib64/fluent/ruby/bin
-export PATH=$PATH:$FLUENTD_BIN
+export PATH=$FLUENTD_BIN:$PATH
+# =====================================
+
+# anyenv ==============================
+ANYENV=$HOME/.anyenv
+if test -d $ANYENV; then
+  export PATH=$ANYENV/shims:$ANYENV/bin:$PATH
+fi
+if test `which anyenv > /dev/null 2>&1; echo $?` -eq 0; then
+  eval "$(anyenv init -)"
+fi
+# =====================================
+
+# pyenv ===============================
+PYENV=$HOME/.pyenv
+if test -d $PYENV; then
+  export PATH=$PYENV/shims:$PATH
+fi
 # =====================================
 
 # rbenv ===============================
 RBENV=$HOME/.rbenv
 if test -d $RBENV; then
-  export PATH=$PATH:$RBENV/bin
+  export PATH=$RBENV/bin:$PATH
 fi
-if test `rbenv --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which rbenv > /dev/null 2>&1; echo $?` -eq 0; then
   eval "$(rbenv init -)"
 fi
 # =====================================
 
 # RVM =================================
-if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
-  export PATH=$PATH:$HOME/.rvm/gems/ruby-2.1.3/bin
-  export PATH=$PATH:$HOME/.rvm/gems/rbx-head/bin
+if test `which rvm > /dev/null 2>&1; echo $?` -eq 0; then
+  export PATH=$HOME/.rvm/gems/ruby-2.1.3/bin:$PATH
+  export PATH=$HOME/.rvm/gems/rbx-head/bin:$PATH
 fi
 # =====================================
 
-#export PATH=/Developer/usr/bin:$PATH
-#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-#export PATH=/usr/local/lib/erlang/lib/elixir/bin:$PATH
-#export PATH=/usr/local/Cellar/elixir/bin:$PATH
-#export PATH=$HOME/Dropbox/usr/local/bin:$PATH
-export PATH=$HOME/Share/btsync/bin:$PATH
-export PATH=$HOME/Share/Dropbox/bin:$PATH
-export PATH=/usr/local/sbin:/usr/local/bin:$PATH
-export PATH=/Applications/Wireshark.app/Contents/Resources/bin:$PATH
+# LightTable ==========================
+LT_HOME="${HOME}/Share/iCloud\ Drive/Users/${LOCAL_ID}/Applications/LightTable"
+if test -d $LT_HOME; then
+  export LT_HOME
+fi
+LT_HOME="${HOME}/Share/iCloud/Users/${LOCAL_ID}/Applications/LightTable"
+if test -d $LT_HOME; then
+  export LT_HOME
+fi
+# =====================================
+
+PATHS=(
+#  /Developer/usr/bin
+#  /opt/local/bin:/opt/local/sbin
+#  /usr/local/lib/erlang/lib/elixir/bin
+#  /usr/local/Cellar/elixir/bin
+#  $HOME/Dropbox/usr/local/bin
+  $HOME/Share/btsync/bin
+  $HOME/Share/Dropbox/bin
+  /usr/local/sbin
+  /usr/local/bin
+  /usr/texbin
+  /usr/local/erlang/bin
+  /Applications/Wireshark.app/Contents/Resources/bin
+)
+for i in ${PATHS[@]}; do
+  if test -d $i; then export PATH=$i:$PATH; fi
+done
 #export MANPATH=/opt/local/man:$MANPATH
-export PATH=/usr/texbin:$PATH
-export PATH=/usr/local/erlang/bin:$PATH
 
 
 #######################################
@@ -293,6 +338,10 @@ alias scp="scp -i $SSH_SECRET_KEY"
 # mosh ================================
 alias moshx="mosh --ssh='TERM=xterm ssh -X -i $SSH_SECRET_KEY'"
 alias mosh="mosh --ssh='TERM=xterm ssh -i $SSH_SECRET_KEY'"
+# =====================================
+
+# autossh =============================
+alias autossh="autossh -M0 -f -N "
 # =====================================
 
 # global aliases ======================
@@ -368,7 +417,7 @@ alias vimr='vim -R'
 # =====================================
 
 # TMUX - The Terminal Multiplexer =====
-if test `tmux -V > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which tmux > /dev/null 2>&1; echo $?` -eq 0; then
   tmux_osx_conf="$HOME/.tmux-osx.conf"
   if test x`uname -s` \=\= x"Darwin" && test -f $tmux_osx_conf; then
     alias tmux="tmux -f $tmux_osx_conf"
@@ -403,7 +452,7 @@ alias mkgtags-cpp='GTAGSFORCECPP=1 $(maketags)'
 # =====================================
 
 # rvm =================================
-if test `rvm --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which rvm > /dev/null 2>&1; echo $?` -eq 0; then
   alias rvm-get-head='rvm get head'
   alias rvm-get-stable='rvm get stable'
   alias rvm-list='rvm list'
@@ -438,7 +487,7 @@ alias rails-env-development-bundle-exec-spork='RAILS_ENV=development bundle exec
 # =====================================
 
 # git =================================
-if test `git --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which git > /dev/null 2>&1; echo $?` -eq 0; then
   #alias git-push-current-branch='git push origin \`git status | grep \'On branch\' | awk \'\{print \$4\}\'\`'
   alias git-init='git init'
   alias git-clone='git clone'
@@ -482,7 +531,7 @@ fi
 # =====================================
 
 # brew ================================
-if test `brew --version > /dev/null 2>&1; echo $?` -eq 0; then
+if test `which brew > /dev/null 2>&1; echo $?` -eq 0; then
   alias brew-update='brew update'
   alias brew-upgrade='brew upgrade'
   alias brew-install='brew install'
@@ -764,10 +813,50 @@ alias rsync-local="rsync -v --progress --rsh='rsh'"
 alias rsync-local-quiet="rsync -q --ignore-errors --rsh='rsh'"
 alias rsync-standard="rsync -vz --progress"
 alias rsync-standard-quiet="rsync -zq --ignore-errors"
-alias rsync-full="rsync -vz --progress -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-local="rsync --rsh='rsh' -v --progress -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-quiet="rsync -zq -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-local-quiet="rsync --rsh='rsh' -q -b --backup-dir=$HOME/.backup/rsync --suffix=.`date +%Y%m%d%H%M%S` --ignore-errors --partial --partial-dir=$HOME/tmp/.rsync/partial -T $HOME/tmp/.rsync/temp --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full="rsync \
+  -vz \
+  --progress \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full-local="rsync \
+  --rsh='rsh' \
+  -v \
+  --progress \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full-quiet="rsync \
+  -zq \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+alias rsync-full-local-quiet="rsync \
+  --rsh='rsh' \
+  -q \
+  -b \
+  --backup-dir=$HOME/.backup/rsync \
+  --suffix=.`date +%Y%m%d%H%M%S` \
+  --ignore-errors \
+  --partial \
+  --partial-dir=$HOME/tmp/.rsync/partial \
+  -T $HOME/tmp/.rsync/temp \
+  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
 alias du="du -sh"
 alias df="df -h"
 alias j="jobs -l"
@@ -780,6 +869,7 @@ alias mosh-mba11="mosh mba11-${LOCAL_ID}.local"
 alias mosh-infinibridge.net='mosh infinibridge.net'
 alias mosh-infinibridge.mobi='mosh infinibridge.mobi'
 alias rackhub="\ssh rackhuber@${LOCAL_ID}.rackbox.net -p 50118 -A -i $SSH_SECRET_KEY"
+alias :q="exit"
 # =====================================
 
 
@@ -811,7 +901,7 @@ precmd() {
       case x"$ZSH_PROMPT_TYPE" in
         x"0") zsh_set_tmux_for_prompt_type_0 ;;
         x"1") zsh_set_tmux_for_prompt_type_1 ;;
-        *)    zsh_set_tmux_for_prompt_type_1 ;;
+        *   ) zsh_set_tmux_for_prompt_type_1 ;;
       esac
       if test x$ZSH_TMUX_RENAME_WINDOW_CONFIGURED != x1; then
         LANG=en_US.UTF-8 vcs_info

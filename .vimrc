@@ -91,6 +91,11 @@ set scrolloff=2
 
 set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
 
+set cursorline
+"highlight CursorLine term=reverse ctermbg=0 guifg=#F0F0F0 guibg=#F0F0F0
+set cursorcolumn
+highlight CursorColumn term=reverse ctermbg=0 guifg=#000000 guibg=#000000
+
 " format.vim ==========================
 let format_allow_over_tw = 0
 " =====================================
@@ -179,6 +184,11 @@ execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
 " =====================================
 
 " GNU Global ==========================
+map <C-g> :Gtags 
+map <C-h> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
 let GtagsCscope_Auto_Load = 1
 let GtagsCscope_Auto_Map = 1
 let GtagsCscope_Quiet = 1
