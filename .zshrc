@@ -3,6 +3,12 @@
 # http://zsh.sourceforge.net/Guide/zshguide.html
 # http://zsh.sourceforge.net/FAQ/
 
+_check_cmd(){
+  if test x$1 \=\= x; then return 1; fi
+  _ret=1
+  if test `which $1 > /dev/null 2>&1; echo $?` -eq 0; then _ret=0; fi
+  return $_ret
+}
 
 #######################################
 # Variables
@@ -140,7 +146,8 @@ fi
 # Python ==============================
 case $KERNEL in
   Darwin)
-    if [ `which brew > /dev/null 2>&1; echo $?` -eq 0 ]; then
+    _check_cmd brew
+    if test $? -eq 0; then
       export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
     fi
     ;;
@@ -164,11 +171,17 @@ esac
 # =====================================
 
 # MySQL ===============================
-export MYSQL_HOME=$HOME'/etc'
+_check_cmd mysql
+if test $? -eq 0; then
+  export MYSQL_HOME=$HOME'/etc'
+fi
 # =====================================
 
 # Java ================================
-export JAVA_HOME='/usr'
+_check_cmd java
+if test $? -eq 0; then
+  export JAVA_HOME='/usr'
+fi
 # =====================================
 
 # AWS CLI =============================
@@ -195,7 +208,8 @@ if test -d ${EXENV_ROOT}; then
   export EXENV_ROOT=${EXENV_ROOT}
   export PATH=${EXENV_ROOT}/bin:$PATH
 fi
-if test `which exenv > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd exenv
+if test $? -eq 0; then
   eval "$(exenv init -)"
 fi
 ELIXIR_BIN=$HOME/local/elixir/bin
@@ -230,7 +244,8 @@ CRENV_ROOT=$HOME/.crenv
 if test -d ${CRENV_ROOT}; then
   export PATH=${CRENV_ROOT}/bin:$PATH
 fi
-if test `which crenv > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd crenv
+if test $? -eq 0; then
   eval "$(crenv init -)"
 fi
 CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
@@ -265,7 +280,8 @@ ANYENV=$HOME/.anyenv
 if test -d $ANYENV; then
   export PATH=$ANYENV/shims:$ANYENV/bin:$PATH
 fi
-if test `which anyenv > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd anyenv
+if test $? -eq 0; then
   eval "$(anyenv init -)"
 fi
 # =====================================
@@ -282,13 +298,15 @@ RBENV=$HOME/.rbenv
 if test -d $RBENV; then
   export PATH=$RBENV/bin:$PATH
 fi
-if test `which rbenv > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd rbenv
+if test $? -eq 0; then
   eval "$(rbenv init -)"
 fi
 # =====================================
 
 # RVM =================================
-if test `which rvm > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd rvm
+if test $? -eq 0; then
   export PATH=$HOME/.rvm/gems/ruby-2.1.3/bin:$PATH
   export PATH=$HOME/.rvm/gems/rbx-head/bin:$PATH
 fi
@@ -417,7 +435,8 @@ alias vimr='vim -R'
 # =====================================
 
 # TMUX - The Terminal Multiplexer =====
-if test `which tmux > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd tmux
+if test $? -eq 0; then
   tmux_osx_conf="$HOME/.tmux-osx.conf"
   if test x`uname -s` \=\= x"Darwin" && test -f $tmux_osx_conf; then
     alias tmux="tmux -f $tmux_osx_conf"
@@ -452,7 +471,8 @@ alias mkgtags-cpp='GTAGSFORCECPP=1 $(maketags)'
 # =====================================
 
 # rvm =================================
-if test `which rvm > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd rvm
+if test $? -eq 0; then
   alias rvm-get-head='rvm get head'
   alias rvm-get-stable='rvm get stable'
   alias rvm-list='rvm list'
@@ -487,7 +507,8 @@ alias rails-env-development-bundle-exec-spork='RAILS_ENV=development bundle exec
 # =====================================
 
 # git =================================
-if test `which git > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd git
+if test $? -eq 0; then
   #alias git-push-current-branch='git push origin \`git status | grep \'On branch\' | awk \'\{print \$4\}\'\`'
   alias git-init='git init'
   alias git-clone='git clone'
@@ -531,7 +552,8 @@ fi
 # =====================================
 
 # brew ================================
-if test `which brew > /dev/null 2>&1; echo $?` -eq 0; then
+_check_cmd brew
+if test $? -eq 0; then
   alias brew-update='brew update'
   alias brew-upgrade='brew upgrade'
   alias brew-install='brew install'
@@ -896,7 +918,8 @@ zstyle ':vcs_info:*' formats '%r'
 
 precmd() {
   # tmux
-  if test `which tmux > /dev/null 2>&1; echo $?` -eq 0; then
+  _check_cmd tmux
+  if test $? -eq 0; then
     if test `tmux list-sessions > /dev/null 2>&1; echo $?` -eq 0; then
       case x"$ZSH_PROMPT_TYPE" in
         x"0") zsh_set_tmux_for_prompt_type_0 ;;
