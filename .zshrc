@@ -465,9 +465,12 @@ fi
 # =====================================
 
 # GNU Global ==========================
-export MAKEOBJDIRPREFIX=$HOME/devel/.gtags
-alias mkgtags='mkdir -p $MAKEOBJDIRPREFIX/$(pwd -P) && gtags -i $MAKEOBJDIRPREFIX/$(pwd -P)'
-alias mkgtags-cpp='GTAGSFORCECPP=1 $(maketags)'
+_check_cmd gtags
+if test $? -eq 0; then
+  export MAKEOBJDIRPREFIX=$HOME/devel/.gtags
+  alias mkgtags='mkdir -p $MAKEOBJDIRPREFIX/$(pwd -P) && gtags -i $MAKEOBJDIRPREFIX/$(pwd -P)'
+  alias mkgtags-cpp='GTAGSFORCECPP=1 $(maketags)'
+fi
 # =====================================
 
 # rvm =================================
@@ -485,25 +488,28 @@ fi
 # =====================================
 
 # rails ===============================
-alias bundle-exec-rails-s='bundle exec rails s'
-alias bundle-exec-rails-c='bundle exec rails c'
-alias bundle-exec-rake='bundle exec rake'
-alias bundle-exec-rspec='bundle exec rspec'
-alias bundle-exec-rspec-fail-fast='bundle exec rspec --fail-fast'
-alias bundle-exec-rspec-order-default='bundle exec rspec --order default'
-alias bundle-exec-rspec-order-default-fail-fast='bundle exec rspec --order default --fail-fast'
-alias bundle-exec-rspec-f-d='bundle exec rspec --format d'
-alias bundle-exec-rspec-f-d-fail-fast='bundle exec rspec --format d --fail-fast'
-alias bundle-exec-rspec-f-d-order-default='bundle exec rspec -f d --order default'
-alias bundle-exec-rspec-f-d-order-default-fail-fast='bundle exec rspec -f d --order default --fail-fast'
-alias bundle-exec-spork='bundle exec spork'
-alias rails-env-development-bundle-exec-rails-s='RAILS_ENV=development bundle exec rails s'
-alias rails-env-development-bundle-exec-rails-c='RAILS_ENV=development bundle exec rails c'
-alias rails-env-development-bundle-exec-rspec='RAILS_ENV=development bundle exec rspec'
-alias rails-env-development-bundle-exec-rspec-order-default='RAILS_ENV=development bundle exec rspec --order default'
-alias rails-env-development-bundle-exec-rspec-f-d='RAILS_ENV=development bundle exec rspec --format d'
-alias rails-env-development-bundle-exec-rspec-f-d-order-default='RAILS_ENV=development bundle exec rspec -f d --order default'
-alias rails-env-development-bundle-exec-spork='RAILS_ENV=development bundle exec spork'
+_check_cmd bundle
+if test $? -eq 0; then
+  alias bundle-exec-rails-s='bundle exec rails s'
+  alias bundle-exec-rails-c='bundle exec rails c'
+  alias bundle-exec-rake='bundle exec rake'
+  alias bundle-exec-rspec='bundle exec rspec'
+  alias bundle-exec-rspec-fail-fast='bundle exec rspec --fail-fast'
+  alias bundle-exec-rspec-order-default='bundle exec rspec --order default'
+  alias bundle-exec-rspec-order-default-fail-fast='bundle exec rspec --order default --fail-fast'
+  alias bundle-exec-rspec-f-d='bundle exec rspec --format d'
+  alias bundle-exec-rspec-f-d-fail-fast='bundle exec rspec --format d --fail-fast'
+  alias bundle-exec-rspec-f-d-order-default='bundle exec rspec -f d --order default'
+  alias bundle-exec-rspec-f-d-order-default-fail-fast='bundle exec rspec -f d --order default --fail-fast'
+  alias bundle-exec-spork='bundle exec spork'
+  alias rails-env-development-bundle-exec-rails-s='RAILS_ENV=development bundle exec rails s'
+  alias rails-env-development-bundle-exec-rails-c='RAILS_ENV=development bundle exec rails c'
+  alias rails-env-development-bundle-exec-rspec='RAILS_ENV=development bundle exec rspec'
+  alias rails-env-development-bundle-exec-rspec-order-default='RAILS_ENV=development bundle exec rspec --order default'
+  alias rails-env-development-bundle-exec-rspec-f-d='RAILS_ENV=development bundle exec rspec --format d'
+  alias rails-env-development-bundle-exec-rspec-f-d-order-default='RAILS_ENV=development bundle exec rspec -f d --order default'
+  alias rails-env-development-bundle-exec-spork='RAILS_ENV=development bundle exec spork'
+fi
 # =====================================
 
 # git =================================
@@ -568,177 +574,183 @@ fi
 # =====================================
 
 # cloudmonkey =========================
-## -- virtualmachine(s) ---------------
-alias cloudmonkey-deploy-virtualmachine='cloudmonkey deploy virtualmachine'
-alias cloudmonkey-destroy-virtualmachine='cloudmonkey destroy virtualmachine'
-alias cloudmonkey-reboot-virtualmachine='cloudmonkey reboot virtualmachine'
-alias cloudmonkey-start-virtualmachine='cloudmonkey start virtualmachine'
-alias cloudmonkey-stop-virtualmachine='cloudmonkey stop virtualmachine'
-alias cloudmonkey-changeservicefor-virtualmachine='cloudmonkey changeservicefor virtualmachine'
-alias cloudmonkey-update-virtualmachine='cloudmonkey update virtualmachine'
-alias cloudmonkey-recover-virtualmachine='cloudmonkey recover virtualmachine'
-alias cloudmonkey-list-virtualmachines='cloudmonkey list virtualmachines listall=true'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-virtualmachine-deploy='cloudmonkey-deploy-virtualmachine'
-alias cloudstack-virtualmachine-destroy='cloudmonkey-destroy-virtualmachine'
-alias cloudstack-virtualmachine-reboot='cloudmonkey-reboot-virtualmachine'
-alias cloudstack-virtualmachine-start='cloudmonkey-start-virtualmachine'
-alias cloudstack-virtualmachine-stop='cloudmonkey-stop-virtualmachine'
-alias cloudstack-virtualmachine-changeservicefor='cloudmonkey-changeservicefor-virtualmachine'
-alias cloudstack-virtualmachine-update='cloudmonkey-update-virtualmachine'
-alias cloudstack-virtualmachine-recover='cloudmonkey-recover-virtualmachine'
-alias cloudstack-virtualmachine-list='cloudmonkey-list-virtualmachines'
-## -- template(s) ---------------------
-alias cloudmonkey-create-template='cloudmonkey create template'
-alias cloudmonkey-update-template='cloudmonkey update template'
-alias cloudmonkey-delete-template='cloudmonkey delete template'
-alias cloudmonkey-list-templates-featured='cloudmonkey list templates listall=true templatefilter=featured'
-alias cloudmonkey-list-templates-self='cloudmonkey list templates listall=true templatefilter=self'
-alias cloudmonkey-list-templates-self-executable='cloudmonkey list templates listall=true templatefilter=self-executable'
-alias cloudmonkey-list-templates-executable='cloudmonkey list templates listall=true templatefilter=executable'
-alias cloudmonkey-list-templates-community='cloudmonkey list templates listall=true templatefilter=community'
-alias cloudmonkey-list-templatepermissions='cloudmonkey list templatepermissions listall=true'
-alias cloudmonkey-extract-template='cloudmonkey extract template'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-template-create='cloudmonkey-create-template'
-alias cloudstack-template-update='cloudmonkey-update-template'
-alias cloudstack-template-delete='cloudmonkey-delete-template'
-alias cloudstack-template-list-featured='cloudmonkey-list-templates-featured'
-alias cloudstack-template-list-self='cloudmonkey-list-templates-self'
-alias cloudstack-template-list-self-executable='cloudmonkey-list-templates-self-executable'
-alias cloudstack-template-list-executable='cloudmonkey-list-templates-executable'
-alias cloudstack-template-list-community='cloudmonkey-list-templates-community'
-alias cloudstack-templatepermissions-list='cloudmonkey-list-templatepermissions'
-alias cloudstack-template-extract='cloudmonkey-extract-template'
-## -- iso(s) --------------------------
-alias cloudmonkey-attach-iso='cloudmonkey attach iso'
-alias cloudmonkey-detach-iso='cloudmonkey detach iso'
-alias cloudmonkey-list-isos='cloudmonkey list isos listall=true'
-alias cloudmonkey-update-iso='cloudmonkey update iso'
-alias cloudmonkey-delete-iso='cloudmonkey delete iso'
-alias cloudmonkey-list-isopermissions='cloudmonkey list isopermissions listall=true'
-alias cloudmonkey-extract-iso='cloudmonkey extract iso'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-iso-attach='cloudmonkey-attach-iso'
-alias cloudstack-iso-detach='cloudmonkey-detach-iso'
-alias cloudstack-iso-list='cloudmonkey-list-isos'
-alias cloudstack-iso-update='cloudmonkey-update-iso'
-alias cloudstack-iso-delete='cloudmonkey-delete-iso'
-alias cloudstack-isopermissions-list='cloudmonkey-list-isopermissions'
-alias cloudstack-iso-extract='cloudmonkey-extract-iso'
-## -- volume(s) -----------------------
-alias cloudmonkey-attach-volume='cloudmonkey attach volume'
-alias cloudmonkey-detach-volume='cloudmonkey detach volume'
-alias cloudmonkey-create-volume='cloudmonkey create volume'
-alias cloudmonkey-delete-volume='cloudmonkey delete volume'
-alias cloudmonkey-list-volumes='cloudmonkey list volumes listall=true'
-alias cloudmonkey-extract-volume='cloudmonkey extract volume'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-volume-attach='cloudmonkey-attach-volume'
-alias cloudstack-volume-detach='cloudmonkey-detach-volume'
-alias cloudstack-volume-create='cloudmonkey-create-volume'
-alias cloudstack-volume-delete='cloudmonkey-delete-volume'
-alias cloudstack-volume-list='cloudmonkey-list-volumes'
-alias cloudstack-volume-extract='cloudmonkey-extract-volume'
-## -- snapshot(s) ---------------------
-alias cloudmonkey-create-snapshot='cloudmonkey create snapshot'
-alias cloudmonkey-list-snapshots='cloudmonkey list snapshots listall=true'
-alias cloudmonkey-delete-snapshot='cloudmonkey delete snapshot'
-alias cloudmonkey-create-snapshotpolicy='cloudmonkey create snapshotpolicy'
-alias cloudmonkey-delete-snapshotpolicy='cloudmonkey delete snapshotpolicy'
-alias cloudmonkey-list-snapshotpolicies='cloudmonkey list snapshotpolicies listall=true'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-snapshot-create='cloudmonkey-create-snapshot'
-alias cloudstack-snapshot-list='cloudmonkey-list-snapshots'
-alias cloudstack-snapshot-delete='cloudmonkey-delete-snapshot'
-alias cloudstack-snapshotpolicy-create='cloudmonkey-create-snapshotpolicy'
-alias cloudstack-snapshotpolicy-delete='cloudmonkey-delete-snapshotpolicy'
-alias cloudstack-snapshotpolicy-list='cloudmonkey-list-snapshotpolicies'
-## -- zone(s) -------------------------
-alias cloudmonkey-list-zones='cloudmonkey list zones listall=true'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-zone-list='cloudmonkey-list-zones'
-## -- securitygroup(s) ----------------
-alias cloudmonkey-create-securitygroup='cloudmonkey create securitygroup'
-alias cloudmonkey-delete-securitygroup='cloudmonkey delete securitygroup'
-alias cloudmonkey-authorize-securitygroupingress='cloudmonkey authorize securitygroupingress'
-alias cloudmonkey-revoke-securitygroupingress='cloudmonkey revoke securitygroupingress'
-alias cloudmonkey-authorize-securitygroupegress='cloudmonkey authorize securitygroupegress'
-alias cloudmonkey-revoke-securitygroupegress='cloudmonkey revoke securitygroupegress'
-alias cloudmonkey-list-securitygroups='cloudmonkey list securitygroups listall=true'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-securitygroup-create='cloudmonkey-create-securitygroup'
-alias cloudstack-securitygroup-delete='cloudmonkey-delete-securitygroup'
-alias cloudstack-securitygroupingress-authorize='cloudmonkey-authorize-securitygroupingress'
-alias cloudstack-securitygroupingress-revoke='cloudmonkey-revoke-securitygroupingress'
-alias cloudstack-securitygroupegress-authorize='cloudmonkey-authorize-securitygroupegress'
-alias cloudstack-securitygroupegress-revoke='cloudmonkey-revoke-securitygroupegress'
-alias cloudstack-securitygroup-list='cloudmonkey-list-securitygroups'
-## -- event(s) ------------------------
-alias cloudmonkey-list-events='cloudmonkey list events listall=true'
-alias cloudmonkey-list-eventtypes='cloudmonkey list eventtypes listall=true'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-event-list='cloudmonkey-list-events'
-alias cloudstack-eventtype-list='cloudmonkey-list-eventtypes'
-## -- others --------------------------
-alias cloudmonkey-list-serviceofferings='cloudmonkey list serviceofferings listall=true'
-alias cloudmonkey-list-diskofferings='cloudmonkey list diskofferings listall=true'
-### - - - - aliases - - - - - - - - - -
-alias cloudstack-serviceoffering-list='cloudmonkey-list-serviceofferings'
-alias cloudstack-diskoffering-list='cloudmonkey-list-diskofferings'
+_check_cmd cloudmonkey
+if test $? -eq 0; then
+  ## -- virtualmachine(s) ---------------
+  alias cloudmonkey-deploy-virtualmachine='cloudmonkey deploy virtualmachine'
+  alias cloudmonkey-destroy-virtualmachine='cloudmonkey destroy virtualmachine'
+  alias cloudmonkey-reboot-virtualmachine='cloudmonkey reboot virtualmachine'
+  alias cloudmonkey-start-virtualmachine='cloudmonkey start virtualmachine'
+  alias cloudmonkey-stop-virtualmachine='cloudmonkey stop virtualmachine'
+  alias cloudmonkey-changeservicefor-virtualmachine='cloudmonkey changeservicefor virtualmachine'
+  alias cloudmonkey-update-virtualmachine='cloudmonkey update virtualmachine'
+  alias cloudmonkey-recover-virtualmachine='cloudmonkey recover virtualmachine'
+  alias cloudmonkey-list-virtualmachines='cloudmonkey list virtualmachines listall=true'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-virtualmachine-deploy='cloudmonkey-deploy-virtualmachine'
+  alias cloudstack-virtualmachine-destroy='cloudmonkey-destroy-virtualmachine'
+  alias cloudstack-virtualmachine-reboot='cloudmonkey-reboot-virtualmachine'
+  alias cloudstack-virtualmachine-start='cloudmonkey-start-virtualmachine'
+  alias cloudstack-virtualmachine-stop='cloudmonkey-stop-virtualmachine'
+  alias cloudstack-virtualmachine-changeservicefor='cloudmonkey-changeservicefor-virtualmachine'
+  alias cloudstack-virtualmachine-update='cloudmonkey-update-virtualmachine'
+  alias cloudstack-virtualmachine-recover='cloudmonkey-recover-virtualmachine'
+  alias cloudstack-virtualmachine-list='cloudmonkey-list-virtualmachines'
+  ## -- template(s) ---------------------
+  alias cloudmonkey-create-template='cloudmonkey create template'
+  alias cloudmonkey-update-template='cloudmonkey update template'
+  alias cloudmonkey-delete-template='cloudmonkey delete template'
+  alias cloudmonkey-list-templates-featured='cloudmonkey list templates listall=true templatefilter=featured'
+  alias cloudmonkey-list-templates-self='cloudmonkey list templates listall=true templatefilter=self'
+  alias cloudmonkey-list-templates-self-executable='cloudmonkey list templates listall=true templatefilter=self-executable'
+  alias cloudmonkey-list-templates-executable='cloudmonkey list templates listall=true templatefilter=executable'
+  alias cloudmonkey-list-templates-community='cloudmonkey list templates listall=true templatefilter=community'
+  alias cloudmonkey-list-templatepermissions='cloudmonkey list templatepermissions listall=true'
+  alias cloudmonkey-extract-template='cloudmonkey extract template'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-template-create='cloudmonkey-create-template'
+  alias cloudstack-template-update='cloudmonkey-update-template'
+  alias cloudstack-template-delete='cloudmonkey-delete-template'
+  alias cloudstack-template-list-featured='cloudmonkey-list-templates-featured'
+  alias cloudstack-template-list-self='cloudmonkey-list-templates-self'
+  alias cloudstack-template-list-self-executable='cloudmonkey-list-templates-self-executable'
+  alias cloudstack-template-list-executable='cloudmonkey-list-templates-executable'
+  alias cloudstack-template-list-community='cloudmonkey-list-templates-community'
+  alias cloudstack-templatepermissions-list='cloudmonkey-list-templatepermissions'
+  alias cloudstack-template-extract='cloudmonkey-extract-template'
+  ## -- iso(s) --------------------------
+  alias cloudmonkey-attach-iso='cloudmonkey attach iso'
+  alias cloudmonkey-detach-iso='cloudmonkey detach iso'
+  alias cloudmonkey-list-isos='cloudmonkey list isos listall=true'
+  alias cloudmonkey-update-iso='cloudmonkey update iso'
+  alias cloudmonkey-delete-iso='cloudmonkey delete iso'
+  alias cloudmonkey-list-isopermissions='cloudmonkey list isopermissions listall=true'
+  alias cloudmonkey-extract-iso='cloudmonkey extract iso'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-iso-attach='cloudmonkey-attach-iso'
+  alias cloudstack-iso-detach='cloudmonkey-detach-iso'
+  alias cloudstack-iso-list='cloudmonkey-list-isos'
+  alias cloudstack-iso-update='cloudmonkey-update-iso'
+  alias cloudstack-iso-delete='cloudmonkey-delete-iso'
+  alias cloudstack-isopermissions-list='cloudmonkey-list-isopermissions'
+  alias cloudstack-iso-extract='cloudmonkey-extract-iso'
+  ## -- volume(s) -----------------------
+  alias cloudmonkey-attach-volume='cloudmonkey attach volume'
+  alias cloudmonkey-detach-volume='cloudmonkey detach volume'
+  alias cloudmonkey-create-volume='cloudmonkey create volume'
+  alias cloudmonkey-delete-volume='cloudmonkey delete volume'
+  alias cloudmonkey-list-volumes='cloudmonkey list volumes listall=true'
+  alias cloudmonkey-extract-volume='cloudmonkey extract volume'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-volume-attach='cloudmonkey-attach-volume'
+  alias cloudstack-volume-detach='cloudmonkey-detach-volume'
+  alias cloudstack-volume-create='cloudmonkey-create-volume'
+  alias cloudstack-volume-delete='cloudmonkey-delete-volume'
+  alias cloudstack-volume-list='cloudmonkey-list-volumes'
+  alias cloudstack-volume-extract='cloudmonkey-extract-volume'
+  ## -- snapshot(s) ---------------------
+  alias cloudmonkey-create-snapshot='cloudmonkey create snapshot'
+  alias cloudmonkey-list-snapshots='cloudmonkey list snapshots listall=true'
+  alias cloudmonkey-delete-snapshot='cloudmonkey delete snapshot'
+  alias cloudmonkey-create-snapshotpolicy='cloudmonkey create snapshotpolicy'
+  alias cloudmonkey-delete-snapshotpolicy='cloudmonkey delete snapshotpolicy'
+  alias cloudmonkey-list-snapshotpolicies='cloudmonkey list snapshotpolicies listall=true'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-snapshot-create='cloudmonkey-create-snapshot'
+  alias cloudstack-snapshot-list='cloudmonkey-list-snapshots'
+  alias cloudstack-snapshot-delete='cloudmonkey-delete-snapshot'
+  alias cloudstack-snapshotpolicy-create='cloudmonkey-create-snapshotpolicy'
+  alias cloudstack-snapshotpolicy-delete='cloudmonkey-delete-snapshotpolicy'
+  alias cloudstack-snapshotpolicy-list='cloudmonkey-list-snapshotpolicies'
+  ## -- zone(s) -------------------------
+  alias cloudmonkey-list-zones='cloudmonkey list zones listall=true'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-zone-list='cloudmonkey-list-zones'
+  ## -- securitygroup(s) ----------------
+  alias cloudmonkey-create-securitygroup='cloudmonkey create securitygroup'
+  alias cloudmonkey-delete-securitygroup='cloudmonkey delete securitygroup'
+  alias cloudmonkey-authorize-securitygroupingress='cloudmonkey authorize securitygroupingress'
+  alias cloudmonkey-revoke-securitygroupingress='cloudmonkey revoke securitygroupingress'
+  alias cloudmonkey-authorize-securitygroupegress='cloudmonkey authorize securitygroupegress'
+  alias cloudmonkey-revoke-securitygroupegress='cloudmonkey revoke securitygroupegress'
+  alias cloudmonkey-list-securitygroups='cloudmonkey list securitygroups listall=true'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-securitygroup-create='cloudmonkey-create-securitygroup'
+  alias cloudstack-securitygroup-delete='cloudmonkey-delete-securitygroup'
+  alias cloudstack-securitygroupingress-authorize='cloudmonkey-authorize-securitygroupingress'
+  alias cloudstack-securitygroupingress-revoke='cloudmonkey-revoke-securitygroupingress'
+  alias cloudstack-securitygroupegress-authorize='cloudmonkey-authorize-securitygroupegress'
+  alias cloudstack-securitygroupegress-revoke='cloudmonkey-revoke-securitygroupegress'
+  alias cloudstack-securitygroup-list='cloudmonkey-list-securitygroups'
+  ## -- event(s) ------------------------
+  alias cloudmonkey-list-events='cloudmonkey list events listall=true'
+  alias cloudmonkey-list-eventtypes='cloudmonkey list eventtypes listall=true'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-event-list='cloudmonkey-list-events'
+  alias cloudstack-eventtype-list='cloudmonkey-list-eventtypes'
+  ## -- others --------------------------
+  alias cloudmonkey-list-serviceofferings='cloudmonkey list serviceofferings listall=true'
+  alias cloudmonkey-list-diskofferings='cloudmonkey list diskofferings listall=true'
+  ### - - - - aliases - - - - - - - - - -
+  alias cloudstack-serviceoffering-list='cloudmonkey-list-serviceofferings'
+  alias cloudstack-diskoffering-list='cloudmonkey-list-diskofferings'
+fi
 # =====================================
 
 # VirtualBox ==========================
-alias vboxmanage='/usr/bin/VBoxManage'
-alias vboxmanage-list-vms='vboxmanage list vms'
-alias vboxmanage-list-running-vms='vboxmanage list runningvms'
-alias vboxmanage-list-os-types='vboxmanage list ostypes'
-alias vboxmanage-list-host-dvds='vboxmanage list hostdvds'
-alias vboxmanage-list-host-floppies='vboxmanage list hostfloppies'
-alias vboxmanage-list-bridged-ifs='vboxmanage list bridgedifs'
-alias vboxmanage-list-hostonly-ifs='vboxmanage list hostonlyifs'
-alias vboxmanage-list-dhcp-servers='vboxmanage list dhcpservers'
-alias vboxmanage-list-host-info='vboxmanage list hostinfo'
-alias vboxmanage-list-host-cpu-ids='vboxmanage list hostcpuids'
-alias vboxmanage-list-hdd-backends='vboxmanage list hddbackends'
-alias vboxmanage-list-hdds='vboxmanage list hdds'
-alias vboxmanage-list-dvds='vboxmanage list dvds'
-alias vboxmanage-list-floppies='vboxmanage list floppies'
-alias vboxmanage-list-usb-host='vboxmanage list usbhost'
-alias vboxmanage-list-usb-filters='vboxmanage list usbfilters'
-alias vboxmanage-list-system-properties='vboxmanage list systemproperties'
-alias vboxmanage-show-vm-info='vboxmanage showvminfo'
-alias vboxmanage-register-vm='vboxmanage registervm'
-alias vboxmanage-unregister-vm='vboxmanage unregistervm'
-alias vboxmanage-create-vm='vboxmanage createvm'
-alias vboxmanage-modify-vm='vboxmanage modifyvm'
-alias vboxmanage-import='vboxmanage import'
-alias vboxmanage-export='vboxmanage export'
-alias vboxmanage-start-vm='vboxmanage startvm'
-alias vboxmanage-control-vm='vboxmanage controlvm'
-alias vboxmanage-discard-state='vboxmanage discardstate'
-alias vboxmanage-adopt-state='vboxmanage adoptstate'
-alias vboxmanage-snapshot='vboxmanage snapshot'
-alias vboxmanage-open-medium='vboxmanage openmedium'
-alias vboxmanage-close-medium='vboxmanage closemedium'
-alias vboxmanage-storage-attach='vboxmanage storageattach'
-alias vboxmanage-storage-ctl='vboxmanage storagectl'
-alias vboxmanage-show-hd-info='vboxmanage showhdinfo'
-alias vboxmanage-create-hd='vboxmanage createhd'
-alias vboxmanage-modify-hd='vboxmanage modifyhd'
-alias vboxmanage-clone-hd='vboxmanage clonehd'
-alias vboxmanage-convert-from-raw='vboxmanage convertfromraw'
-alias vboxmanage-add-iscsi-disk='vboxmanage addiscsidisk'
-alias vboxmanage-get-extra-data='vboxmanage getextradata'
-alias vboxmanage-set-extra-data='vboxmanage setextradata'
-alias vboxmanage-set-property='vboxmanage setproperty'
-alias vboxmanage-usb-filter='vboxmanage usbfilter'
-alias vboxmanage-shared-folder='vboxmanage sharedfolder'
-alias vboxmanage-vm-statistics='vboxmanage vmstatistics'
-alias vboxmanage-guest-property='vboxmanage guestproperty'
-alias vboxmanage-metrics='vboxmanage metrics'
-alias vboxmanage-hostonly-if='vboxmanage hostonlyif'
-alias vboxmanage-dhcp-server='vboxmanage dhcpserver'
+_check_cmd VBoxManage
+if test $? -eq 0; then
+  alias vboxmanage='/usr/bin/VBoxManage'
+  alias vboxmanage-list-vms='vboxmanage list vms'
+  alias vboxmanage-list-running-vms='vboxmanage list runningvms'
+  alias vboxmanage-list-os-types='vboxmanage list ostypes'
+  alias vboxmanage-list-host-dvds='vboxmanage list hostdvds'
+  alias vboxmanage-list-host-floppies='vboxmanage list hostfloppies'
+  alias vboxmanage-list-bridged-ifs='vboxmanage list bridgedifs'
+  alias vboxmanage-list-hostonly-ifs='vboxmanage list hostonlyifs'
+  alias vboxmanage-list-dhcp-servers='vboxmanage list dhcpservers'
+  alias vboxmanage-list-host-info='vboxmanage list hostinfo'
+  alias vboxmanage-list-host-cpu-ids='vboxmanage list hostcpuids'
+  alias vboxmanage-list-hdd-backends='vboxmanage list hddbackends'
+  alias vboxmanage-list-hdds='vboxmanage list hdds'
+  alias vboxmanage-list-dvds='vboxmanage list dvds'
+  alias vboxmanage-list-floppies='vboxmanage list floppies'
+  alias vboxmanage-list-usb-host='vboxmanage list usbhost'
+  alias vboxmanage-list-usb-filters='vboxmanage list usbfilters'
+  alias vboxmanage-list-system-properties='vboxmanage list systemproperties'
+  alias vboxmanage-show-vm-info='vboxmanage showvminfo'
+  alias vboxmanage-register-vm='vboxmanage registervm'
+  alias vboxmanage-unregister-vm='vboxmanage unregistervm'
+  alias vboxmanage-create-vm='vboxmanage createvm'
+  alias vboxmanage-modify-vm='vboxmanage modifyvm'
+  alias vboxmanage-import='vboxmanage import'
+  alias vboxmanage-export='vboxmanage export'
+  alias vboxmanage-start-vm='vboxmanage startvm'
+  alias vboxmanage-control-vm='vboxmanage controlvm'
+  alias vboxmanage-discard-state='vboxmanage discardstate'
+  alias vboxmanage-adopt-state='vboxmanage adoptstate'
+  alias vboxmanage-snapshot='vboxmanage snapshot'
+  alias vboxmanage-open-medium='vboxmanage openmedium'
+  alias vboxmanage-close-medium='vboxmanage closemedium'
+  alias vboxmanage-storage-attach='vboxmanage storageattach'
+  alias vboxmanage-storage-ctl='vboxmanage storagectl'
+  alias vboxmanage-show-hd-info='vboxmanage showhdinfo'
+  alias vboxmanage-create-hd='vboxmanage createhd'
+  alias vboxmanage-modify-hd='vboxmanage modifyhd'
+  alias vboxmanage-clone-hd='vboxmanage clonehd'
+  alias vboxmanage-convert-from-raw='vboxmanage convertfromraw'
+  alias vboxmanage-add-iscsi-disk='vboxmanage addiscsidisk'
+  alias vboxmanage-get-extra-data='vboxmanage getextradata'
+  alias vboxmanage-set-extra-data='vboxmanage setextradata'
+  alias vboxmanage-set-property='vboxmanage setproperty'
+  alias vboxmanage-usb-filter='vboxmanage usbfilter'
+  alias vboxmanage-shared-folder='vboxmanage sharedfolder'
+  alias vboxmanage-vm-statistics='vboxmanage vmstatistics'
+  alias vboxmanage-guest-property='vboxmanage guestproperty'
+  alias vboxmanage-metrics='vboxmanage metrics'
+  alias vboxmanage-hostonly-if='vboxmanage hostonlyif'
+  alias vboxmanage-dhcp-server='vboxmanage dhcpserver'
+fi
 # =====================================
 
 # OS X Applications ===================
@@ -763,42 +775,48 @@ alias omnigraffle='open -a /Applications/OmniGraffle\ Professional\ 5.app'
 # =====================================
 
 # Diskutil ============================
-alias diskutil-mountDisk='diskutil mountDisk'
-alias diskutil-unmountDisk='diskutil unmountDisk'
-alias diskutil-list='diskutil list'
-alias diskutil-eject='diskutil eject'
+_check_cmd diskutil
+if test $? -eq 0; then
+  alias diskutil-mountDisk='diskutil mountDisk'
+  alias diskutil-unmountDisk='diskutil unmountDisk'
+  alias diskutil-list='diskutil list'
+  alias diskutil-eject='diskutil eject'
+fi
 # =====================================
 
 # say =================================
-alias say='say -r 200 --progress'
-alias say-agnes='say -v Agnes'
-alias say-jill='say -v Jill'
-alias say-kathy='say -v Kathy'
-alias say-princess='say -v Princess'
-alias say-samantha='say -v Samantha'
-alias say-vicki='say -v Vicki'
-alias say-victoria='say -v Victoria'
-alias say-alex='say -v Alex'
-alias say-bruce='say -v Bruce'
-alias say-fred='say -v Fred'
-alias say-junior='say -v Junior'
-alias say-ralph='say -v Ralph'
-alias say-tom='say -v Tom'
-alias say-albert='say -v Albert'
-alias say-bad_news='say -v Bad\ News'
-alias say-bahh='say -v Bahh'
-alias say-bells='say -v Bells'
-alias say-boing='say -v Boing'
-alias say-bubbles='say -v Bubbles'
-alias say-cellos='say -v Cellos'
-alias say-deranged='say -v Deranged'
-alias say-good_news='say -v Good\ News'
-alias say-hysterical='say -v Hysterical'
-alias say-pipe_organ='say -v Pipe\ Organ'
-alias say-trinoids='say -v Trinoids'
-alias say-whisper='say -v Whisper'
-alias say-zarbox='say -v Zarbox'
-alias say-kyoko='say -v Kyoko'
+_check_cmd say
+if test $? -eq 0; then
+  alias say='say -r 200 --progress'
+  alias say-agnes='say -v Agnes'
+  alias say-jill='say -v Jill'
+  alias say-kathy='say -v Kathy'
+  alias say-princess='say -v Princess'
+  alias say-samantha='say -v Samantha'
+  alias say-vicki='say -v Vicki'
+  alias say-victoria='say -v Victoria'
+  alias say-alex='say -v Alex'
+  alias say-bruce='say -v Bruce'
+  alias say-fred='say -v Fred'
+  alias say-junior='say -v Junior'
+  alias say-ralph='say -v Ralph'
+  alias say-tom='say -v Tom'
+  alias say-albert='say -v Albert'
+  alias say-bad_news='say -v Bad\ News'
+  alias say-bahh='say -v Bahh'
+  alias say-bells='say -v Bells'
+  alias say-boing='say -v Boing'
+  alias say-bubbles='say -v Bubbles'
+  alias say-cellos='say -v Cellos'
+  alias say-deranged='say -v Deranged'
+  alias say-good_news='say -v Good\ News'
+  alias say-hysterical='say -v Hysterical'
+  alias say-pipe_organ='say -v Pipe\ Organ'
+  alias say-trinoids='say -v Trinoids'
+  alias say-whisper='say -v Whisper'
+  alias say-zarbox='say -v Zarbox'
+  alias say-kyoko='say -v Kyoko'
+fi
 # =====================================
 
 # sferik/t ============================
@@ -810,15 +828,18 @@ alias tw-stream-timeline="tw stream timeline"
 # =====================================
 
 # w3m =================================
-alias w3m='w3m -cookie -B -graph'
-alias google='w3m https://www.google.com/ncr'
-alias google-ja='w3m https://www.google.co.jp/'
-alias duckduckgo='w3m https://duckduckgo.com/'
-alias amazon='w3m https://www.amazon.com/'
-alias amazon-ja='w3m https://www.amazon.co.jp/'
-alias wikipedia='w3m http://en.wikipedia.org/'
-alias wikipedia-ja='w3m http://ja.wikipedia.org/'
-alias github='w3m https://github.com/'
+_check_cmd w3m
+if test $? -eq 0; then
+  alias w3m='w3m -cookie -B -graph'
+  alias google='w3m https://www.google.com/ncr'
+  alias google-ja='w3m https://www.google.co.jp/'
+  alias duckduckgo='w3m https://duckduckgo.com/'
+  alias amazon='w3m https://www.amazon.com/'
+  alias amazon-ja='w3m https://www.amazon.co.jp/'
+  alias wikipedia='w3m http://en.wikipedia.org/'
+  alias wikipedia-ja='w3m http://ja.wikipedia.org/'
+  alias github='w3m https://github.com/'
+fi
 # =====================================
 
 # Others ==============================
@@ -830,55 +851,59 @@ alias zshrc.source="source $HOME/.zshrc"
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir -p'
-alias rsync="/usr/bin/rsync -a -S --delay-updates --exclude-from=$HOME/.rsync/exclude.txt --stats -E"
-alias rsync-local="rsync -v --progress --rsh='rsh'"
-alias rsync-local-quiet="rsync -q --ignore-errors --rsh='rsh'"
-alias rsync-standard="rsync -vz --progress"
-alias rsync-standard-quiet="rsync -zq --ignore-errors"
-alias rsync-full="rsync \
-  -vz \
-  --progress \
-  -b \
-  --backup-dir=$HOME/.backup/rsync \
-  --suffix=.`date +%Y%m%d%H%M%S` \
-  --ignore-errors \
-  --partial \
-  --partial-dir=$HOME/tmp/.rsync/partial \
-  -T $HOME/tmp/.rsync/temp \
-  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-local="rsync \
-  --rsh='rsh' \
-  -v \
-  --progress \
-  -b \
-  --backup-dir=$HOME/.backup/rsync \
-  --suffix=.`date +%Y%m%d%H%M%S` \
-  --ignore-errors \
-  --partial \
-  --partial-dir=$HOME/tmp/.rsync/partial \
-  -T $HOME/tmp/.rsync/temp \
-  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-quiet="rsync \
-  -zq \
-  -b \
-  --backup-dir=$HOME/.backup/rsync \
-  --suffix=.`date +%Y%m%d%H%M%S` \
-  --ignore-errors \
-  --partial \
-  --partial-dir=$HOME/tmp/.rsync/partial \
-  -T $HOME/tmp/.rsync/temp \
-  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
-alias rsync-full-local-quiet="rsync \
-  --rsh='rsh' \
-  -q \
-  -b \
-  --backup-dir=$HOME/.backup/rsync \
-  --suffix=.`date +%Y%m%d%H%M%S` \
-  --ignore-errors \
-  --partial \
-  --partial-dir=$HOME/tmp/.rsync/partial \
-  -T $HOME/tmp/.rsync/temp \
-  --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+
+_check_cmd rsync
+if test $? -eq 0; then
+  alias rsync="/usr/bin/rsync -a -S --delay-updates --exclude-from=$HOME/.rsync/exclude.txt --stats -E"
+  alias rsync-local="rsync -v --progress --rsh='rsh'"
+  alias rsync-local-quiet="rsync -q --ignore-errors --rsh='rsh'"
+  alias rsync-standard="rsync -vz --progress"
+  alias rsync-standard-quiet="rsync -zq --ignore-errors"
+  alias rsync-full="rsync \
+    -vz \
+    --progress \
+    -b \
+    --backup-dir=$HOME/.backup/rsync \
+    --suffix=.`date +%Y%m%d%H%M%S` \
+    --ignore-errors \
+    --partial \
+    --partial-dir=$HOME/tmp/.rsync/partial \
+    -T $HOME/tmp/.rsync/temp \
+    --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+  alias rsync-full-local="rsync \
+    --rsh='rsh' \
+    -v \
+    --progress \
+    -b \
+    --backup-dir=$HOME/.backup/rsync \
+    --suffix=.`date +%Y%m%d%H%M%S` \
+    --ignore-errors \
+    --partial \
+    --partial-dir=$HOME/tmp/.rsync/partial \
+    -T $HOME/tmp/.rsync/temp \
+    --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+  alias rsync-full-quiet="rsync \
+    -zq \
+    -b \
+    --backup-dir=$HOME/.backup/rsync \
+    --suffix=.`date +%Y%m%d%H%M%S` \
+    --ignore-errors \
+    --partial \
+    --partial-dir=$HOME/tmp/.rsync/partial \
+    -T $HOME/tmp/.rsync/temp \
+    --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+  alias rsync-full-local-quiet="rsync \
+    --rsh='rsh' \
+    -q \
+    -b \
+    --backup-dir=$HOME/.backup/rsync \
+    --suffix=.`date +%Y%m%d%H%M%S` \
+    --ignore-errors \
+    --partial \
+    --partial-dir=$HOME/tmp/.rsync/partial \
+    -T $HOME/tmp/.rsync/temp \
+    --log-file=$HOME/var/log/rsync/`date +%Y%m%d%H%M%S`.log"
+fi
 alias du="du -sh"
 alias df="df -h"
 alias j="jobs -l"
@@ -886,10 +911,14 @@ alias watch-1='watch -n 1'
 alias where="command -v"
 alias man='man -a -P less'
 alias bsh='java bsh.Interpreter'
-alias mosh-mbp17="mosh mbp17-${LOCAL_ID}.local"
-alias mosh-mba11="mosh mba11-${LOCAL_ID}.local"
-alias mosh-infinibridge.net='mosh infinibridge.net'
-alias mosh-infinibridge.mobi='mosh infinibridge.mobi'
+
+_check_cmd mosh
+if test $? -eq 0; then
+  alias mosh-mbp17="mosh mbp17-${LOCAL_ID}.local"
+  alias mosh-mba11="mosh mba11-${LOCAL_ID}.local"
+  alias mosh-infinibridge.net='mosh infinibridge.net'
+  alias mosh-infinibridge.mobi='mosh infinibridge.mobi'
+fi
 alias rackhub="\ssh rackhuber@${LOCAL_ID}.rackbox.net -p 50118 -A -i $SSH_SECRET_KEY"
 alias :q="exit"
 # =====================================
@@ -1056,15 +1085,18 @@ chpwd
 #######################################
 
 # GNU screen ==========================
-#alias screen='screen -t "`date "+%m%d%H%M%S"`" -U -d -R'
-#alias screen='screen -t "" -U -d -R'
-#alias screen='screen -t "" -U'
-alias screen='screen -t ""'
-alias s='screen'
-alias r='screen -r'
-alias d='screen -rd'
-alias x='screen -rx'
-alias sl='s -ls'
+_check_cmd screen
+if test $? -eq 0; then
+  #alias screen='screen -t "`date "+%m%d%H%M%S"`" -U -d -R'
+  #alias screen='screen -t "" -U -d -R'
+  #alias screen='screen -t "" -U'
+  alias screen='screen -t ""'
+  alias s='screen'
+  alias r='screen -r'
+  alias d='screen -rd'
+  alias x='screen -rx'
+  alias sl='s -ls'
+fi
 #preexec () {
 #  [ ${STY} ] && echo -ne "\ek${1%% *}\e\\"
 #}
@@ -1082,16 +1114,22 @@ setopt nobeep
 # =====================================
 
 # rvm =================================
-if [ -f /etc/profile.d/rvm.sh ]; then
-  source /etc/profile.d/rvm.sh
+_check_cmd rvm
+if test $? -eq 0; then
+  if [ -f /etc/profile.d/rvm.sh ]; then
+    source /etc/profile.d/rvm.sh
+  fi
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 fi
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # =====================================
 
 # tmux ================================
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-alias tmux-session-save='tmux-session save'
-alias tmux-session-restore='tmux-session restore'
+_check_cmd tmux
+if test $? -eq 0; then
+  [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+  alias tmux-session-save='tmux-session save'
+  alias tmux-session-restore='tmux-session restore'
+fi
 # =====================================
 
 # mosh ================================
