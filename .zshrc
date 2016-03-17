@@ -119,27 +119,25 @@ setopt ignore_eof
 # PATH
 #######################################
 
-# $HOME/.brew/{,s}bin =================
-HOMEBREW_PATH=$HOME/.brew
-if test -d $HOMEBREW_PATH; then
-  export PATH=$HOMEBREW_PATH/bin:$PATH
-  export PATH=$HOMEBREW_PATH/sbin:$PATH
+# /usr/local/{,s}bin =================
+_check_cmd brew
+if test $? -eq 0; then
+  HOMEBREW_PATH=/usr/local
+  if test -d $HOMEBREW_PATH; then
+    export PATH=$HOMEBREW_PATH/bin:$PATH
+    export PATH=$HOMEBREW_PATH/sbin:$PATH
+  fi
 fi
 # =====================================
 
-# # $HOME/usr/local/{,s}bin =============
-# HOMEBREW_PATH=$HOME/usr/local
-# if test -d $HOMEBREW_PATH; then
-#   export PATH=$HOMEBREW_PATH/bin:$PATH
-#   export PATH=$HOMEBREW_PATH/sbin:$PATH
-# fi
-# # =====================================
-
-# /usr/local/{,s}bin =================
-HOMEBREW_PATH=/usr/local
-if test -d $HOMEBREW_PATH; then
-  export PATH=$HOMEBREW_PATH/bin:$PATH
-  export PATH=$HOMEBREW_PATH/sbin:$PATH
+# $HOME/.brew/{,s}bin =================
+_check_cmd brew
+if test $? -eq 0; then
+  HOMEBREW_PATH=$HOME/.brew
+  if test -d $HOMEBREW_PATH; then
+    export PATH=$HOMEBREW_PATH/bin:$PATH
+    export PATH=$HOMEBREW_PATH/sbin:$PATH
+  fi
 fi
 # =====================================
 
@@ -203,13 +201,13 @@ fi
 #if test -d ${EXENV_ROOT}; then
 #  export EXENV_ROOT=${EXENV_ROOT}
 #fi
-EXENV_ROOT=$HOME/.exenv
-if test -d ${EXENV_ROOT}; then
-  export EXENV_ROOT=${EXENV_ROOT}
-  export PATH=${EXENV_ROOT}/bin:$PATH
-fi
 _check_cmd exenv
 if test $? -eq 0; then
+  EXENV_ROOT=$HOME/.exenv
+  if test -d ${EXENV_ROOT}; then
+    export EXENV_ROOT=${EXENV_ROOT}
+    export PATH=${EXENV_ROOT}/bin:$PATH
+  fi
   eval "$(exenv init -)"
 fi
 ELIXIR_BIN=$HOME/local/elixir/bin
@@ -219,36 +217,42 @@ fi
 # =====================================
 
 # Go ==================================
-GOROOT=/usr/lib/go
-#export GOROOT=$HOME/local/golang
-if test -d ${GOROOT}; then
-  export GOROOT=${GOROOT}
-fi
-GOPATH=$HOME/.golang
-if test -d ${GOPATH}; then
-  export GOPATH=${GOPATH}
-fi
-if test -d ${GOROOT} && test -d ${GOPATH}; then
-  export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-fi
-#if test ! -d $GOROOT; then
-#  mkdir -p $GOROOT/bin
-#fi
-if test ! -d $GOPATH; then
-  mkdir -p $GOPATH/bin
+_check_cmd go
+if test $? -eq 0; then
+  GOROOT=/usr/lib/go
+  #export GOROOT=$HOME/local/golang
+  if test -d ${GOROOT}; then
+    export GOROOT=${GOROOT}
+  fi
+  GOPATH=$HOME/.golang
+  if test -d ${GOPATH}; then
+    export GOPATH=${GOPATH}
+  fi
+  if test -d ${GOROOT} && test -d ${GOPATH}; then
+    export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+  fi
+  #if test ! -d $GOROOT; then
+  #  mkdir -p $GOROOT/bin
+  #fi
+  if test ! -d $GOPATH; then
+    mkdir -p $GOPATH/bin
+  fi
 fi
 # =====================================
 
 # Crystal =============================
-CRENV_ROOT=$HOME/.crenv
-if test -d ${CRENV_ROOT}; then
-  export PATH=${CRENV_ROOT}/bin:$PATH
-fi
 _check_cmd crenv
 if test $? -eq 0; then
-  eval "$(crenv init -)"
+  CRENV_ROOT=$HOME/.crenv
+  if test -d ${CRENV_ROOT}; then
+    export PATH=${CRENV_ROOT}/bin:$PATH
+  fi
+  _check_cmd crenv
+  if test $? -eq 0; then
+    eval "$(crenv init -)"
+  fi
+  CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
 fi
-CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
 # =====================================
 
 # VMware ==============================
