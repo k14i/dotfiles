@@ -197,10 +197,6 @@ fi
 # =====================================
 
 # Elixir ==============================
-#EXENV_ROOT=/usr/local/var/exenv
-#if test -d ${EXENV_ROOT}; then
-#  export EXENV_ROOT=${EXENV_ROOT}
-#fi
 _check_cmd exenv
 if test $? -eq 0; then
   EXENV_ROOT=$HOME/.exenv
@@ -231,9 +227,6 @@ if test $? -eq 0; then
   if test -d ${GOROOT} && test -d ${GOPATH}; then
     export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
   fi
-  #if test ! -d $GOROOT; then
-  #  mkdir -p $GOROOT/bin
-  #fi
   if test ! -d $GOPATH; then
     mkdir -p $GOPATH/bin
   fi
@@ -330,9 +323,7 @@ fi
 PATHS=(
 #  /Developer/usr/bin
 #  /opt/local/bin:/opt/local/sbin
-#  /usr/local/lib/erlang/lib/elixir/bin
 #  /usr/local/Cellar/elixir/bin
-#  $HOME/Dropbox/usr/local/bin
   $HOME/Share/btsync/bin
   $HOME/Share/Dropbox/bin
   /usr/local/sbin
@@ -344,7 +335,6 @@ PATHS=(
 for i in ${PATHS[@]}; do
   if test -d $i; then export PATH=$i:$PATH; fi
 done
-#export MANPATH=/opt/local/man:$MANPATH
 
 
 #######################################
@@ -425,8 +415,6 @@ if test -f $HOMEBREW_PATH/bin/emacs; then
 elif test -f /usr/bin/emacs; then
   EMACS=/usr/bin/emacs
 fi
-#alias emacs='/usr/bin/emacs -nw'
-#alias e='/usr/bin/emacs -nw'
 alias emacs=$EMACS
 alias e=$EMACS
 export EDITOR=emacs
@@ -851,7 +839,6 @@ alias pb-fix-utf-8="pbpaste | iconv -c -f UTF-8-MAC -t UTF-8 | pbcopy"
 alias zshrc="source $HOME/.zshrc"
 alias source-zshrc="source $HOME/.zshrc"
 alias zshrc.source="source $HOME/.zshrc"
-#alias topaz="$HOME/devel/github/topazproject/topaz/bin/topaz"
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir -p'
