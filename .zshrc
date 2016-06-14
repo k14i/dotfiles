@@ -1137,3 +1137,19 @@ docker-attach(){
   nsenter --target $PID --mount --uts --ipc --net --pid
 }
 # =====================================
+
+
+# Google Cloud Platform ===============
+source /usr/local/share/autojump/autojump.zsh
+[[ -s `brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/keith/Library/Mobile Documents/com~apple~CloudDocs/Users/keith@nttpc.co.jp/Library/google-cloud-sdk/path.zsh.inc'
+
+# # The next line enables shell command completion for gcloud.
+# source '/Users/keith/Library/Mobile Documents/com~apple~CloudDocs/Users/keith@nttpc.co.jp/Library/google-cloud-sdk/completion.zsh.inc'
+
+export ALPN_VERSION="8.1.7.v20160121"
+export JAVA_HOME=$(/usr/libexec/java_home)
+# =====================================
+
