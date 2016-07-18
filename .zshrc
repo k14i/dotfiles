@@ -1144,7 +1144,7 @@ target='/usr/local/share/autojump/autojump.zsh'
 if test -f "$target"; then
   source $target
   [[ -s `brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
-if
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 target='/Users/keith/Library/Mobile Documents/com~apple~CloudDocs/Users/keith@nttpc.co.jp/Library/google-cloud-sdk/path.zsh.inc'
