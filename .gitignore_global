@@ -3,6 +3,7 @@
 .gitconfig
 .idea
 *.iml
+*.pyc
 .rvm
 .rvmrc
 .ruby-version
