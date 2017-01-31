@@ -326,6 +326,8 @@ PATHS=(
 #  /usr/local/Cellar/elixir/bin
   $HOME/Share/btsync/bin
   $HOME/Share/Dropbox/bin
+  $HOME/.brew/bin
+  $HOME/.brew/sbin
   /usr/local/sbin
   /usr/local/bin
   /usr/texbin
