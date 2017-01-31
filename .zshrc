@@ -138,6 +138,10 @@ if test $? -eq 0; then
     export PATH=$HOMEBREW_PATH/bin:$PATH
     export PATH=$HOMEBREW_PATH/sbin:$PATH
   fi
+  export HOMEBREW_CACHE="$HOMEBREW_PATH/cache"
+  if test ! -d "$HOMEBREW_CACHE"; then
+    mkdir -p $HOMEBREW_CACHE
+  fi
 fi
 # =====================================
 
