@@ -4,6 +4,7 @@
 .idea
 *.iml
 *.pyc
+.env
 .rvm
 .rvmrc
 .ruby-version
