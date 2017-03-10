@@ -5,6 +5,7 @@
 *.iml
 *.pyc
 .env
+.venv
 .rvm
 .rvmrc
 .ruby-version
