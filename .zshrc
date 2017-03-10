@@ -1073,7 +1073,7 @@ chpwd() {
   esac
   mkdir -p /tmp/rm/`date +%Y-%m-%d`
 
-  _activate_venv()
+  _activate_venv
 }
 chpwd
 # =====================================
