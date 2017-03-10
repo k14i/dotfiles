@@ -146,6 +146,11 @@ fi
 # =====================================
 
 # Python ==============================
+_activate_venv(){
+  if [ -d .venv ]; then
+    source .venv/bin/activate
+  fi
+}
 case $KERNEL in
   Darwin)
     _check_cmd brew
@@ -1067,6 +1072,8 @@ chpwd() {
       ;;
   esac
   mkdir -p /tmp/rm/`date +%Y-%m-%d`
+
+  _activate_venv()
 }
 chpwd
 # =====================================
