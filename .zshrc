@@ -222,39 +222,39 @@ fi
 # =====================================
 
 # Go ==================================
-_check_cmd go
-if test $? -eq 0; then
-  GOROOT=/usr/lib/go
-  #export GOROOT=$HOME/local/golang
-  if test -d ${GOROOT}; then
-    export GOROOT=${GOROOT}
-  fi
-  GOPATH=$HOME/.golang
-  if test -d ${GOPATH}; then
-    export GOPATH=${GOPATH}
-  fi
-  if test -d ${GOROOT} && test -d ${GOPATH}; then
-    export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-  fi
-  if test ! -d $GOPATH; then
-    mkdir -p $GOPATH/bin
-  fi
-fi
+# _check_cmd goenv
+# if test $? -eq 0; then
+#   GOROOT=/usr/lib/go
+#   #export GOROOT=$HOME/local/golang
+#   if test -d ${GOROOT}; then
+#     export GOROOT=${GOROOT}
+#   fi
+#   GOPATH=$HOME/.golang
+#   if test -d ${GOPATH}; then
+#     export GOPATH=${GOPATH}
+#   fi
+#   if test -d ${GOROOT} && test -d ${GOPATH}; then
+#     export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+#   fi
+#   if test ! -d $GOPATH; then
+#     mkdir -p $GOPATH/bin
+#   fi
+# fi
 # =====================================
 
 # Crystal =============================
-_check_cmd crenv
-if test $? -eq 0; then
-  CRENV_ROOT=$HOME/.crenv
-  if test -d ${CRENV_ROOT}; then
-    export PATH=${CRENV_ROOT}/bin:$PATH
-  fi
-  _check_cmd crenv
-  if test $? -eq 0; then
-    eval "$(crenv init -)"
-  fi
-  CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
-fi
+# _check_cmd crenv
+# if test $? -eq 0; then
+#   CRENV_ROOT=$HOME/.crenv
+#   if test -d ${CRENV_ROOT}; then
+#     export PATH=${CRENV_ROOT}/bin:$PATH
+#   fi
+#   _check_cmd crenv
+#   if test $? -eq 0; then
+#     eval "$(crenv init -)"
+#   fi
+#   CRYSTAL_CACHE_DIR=$HOME/.Trash/__crystal
+# fi
 # =====================================
 
 # VMware ==============================
@@ -293,21 +293,21 @@ fi
 # =====================================
 
 # pyenv ===============================
-PYENV=$HOME/.pyenv
-if test -d $PYENV; then
-  export PATH=$PYENV/shims:$PATH
-fi
+# PYENV=$HOME/.pyenv
+# if test -d $PYENV; then
+#   export PATH=$PYENV/shims:$PATH
+# fi
 # =====================================
 
 # rbenv ===============================
-RBENV=$HOME/.rbenv
-if test -d $RBENV; then
-  export PATH=$RBENV/bin:$PATH
-fi
-_check_cmd rbenv
-if test $? -eq 0; then
-  eval "$(rbenv init -)"
-fi
+# RBENV=$HOME/.rbenv
+# if test -d $RBENV; then
+#   export PATH=$RBENV/bin:$PATH
+# fi
+# _check_cmd rbenv
+# if test $? -eq 0; then
+#   eval "$(rbenv init -)"
+# fi
 # =====================================
 
 # RVM =================================
@@ -1110,7 +1110,7 @@ fi
 autoload -U compinit
 compinit -u
 
-export LANG=ja_JP.UTF-8
+# export LANG=ja_JP.UTF-8
 limit coredumpsize 102400
 setopt nobeep
 
@@ -1141,7 +1141,7 @@ compdef mosh=ssh
 # =====================================
 
 # Sphinx ==============================
-export LC_ALL='ja_JP.UTF-8'
+# export LC_ALL='ja_JP.UTF-8'
 # =====================================
 
 # Docker ==============================
