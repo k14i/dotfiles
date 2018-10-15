@@ -3,7 +3,7 @@
 # http://zsh.sourceforge.net/Guide/zshguide.html
 # http://zsh.sourceforge.net/FAQ/
 
-if test x$LOGLEVEL == x; then
+if test x$LOGLEVEL "==" x; then
   LOGLEVEL=error
 fi
 
