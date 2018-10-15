@@ -3,36 +3,36 @@
 # http://zsh.sourceforge.net/Guide/zshguide.html
 # http://zsh.sourceforge.net/FAQ/
 
-LOGLEVEL=error
+if test x$LOGLEVEL == x; then
+  LOGLEVEL=error
+fi
 
 
 #######################################
 # .zsh.d fragment
 #######################################
 
-if test x$SHELL \=\= x/bin/zsh; then
-  case $LOGLEVEL in
-    debug)
-      echo "DEBUG: HOME = ${HOME}"
-      ;;
-    info)
-      echo -n "."
-      ;;
-  esac
-  if test -d "${HOME}/.zsh.d"; then
-    for f in `find ${HOME}/.zsh.d/ -name '*.sh'` ; do
-        case $LOGLEVEL in
-          debug)
-            echo "DEBUG: f = ${f}"
-            ;;
-          info)
-            echo -n "."
-            ;;
-        esac
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
-  fi
+case $LOGLEVEL in
+  debug)
+    echo "DEBUG: HOME = ${HOME}"
+    ;;
+  info)
+    echo -n "."
+    ;;
+esac
+if test -d "${HOME}/.zsh.d"; then
+  for f in `find ${HOME}/.zsh.d/ -name '*.sh'` ; do
+      case $LOGLEVEL in
+        debug)
+          echo "DEBUG: f = ${f}"
+          ;;
+        info)
+          echo -n "."
+          ;;
+      esac
+      [ -x "$f" ] && . "$f"
+  done
+  unset f
 fi
 
 
@@ -67,5 +67,6 @@ for x in ${SHELLS[@]}; do
 done
 unset x
 unset SHELLS
+
 clear
 
