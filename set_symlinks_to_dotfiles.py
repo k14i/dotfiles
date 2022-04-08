@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 
@@ -14,12 +14,13 @@ for file in files:
 
   if file in files_homedir:
     file_to_remove = os.path.abspath(target)
-    print "WARNING: %s is already in %s, so remove %s" % (file, homedir, file_to_remove)
+    print("WARNING: {} is already in {}, so remove {}".format(file, homedir, file_to_remove))
     os.remove(file_to_remove)
   else:
-    print "INFO: %s is NOT in %s" % (file, homedir)
+    print("INFO: {} is NOT in {}".format(file, homedir))
 
-  print "INFO: create symlink: source = %s, link_name = %s" % (os.path.abspath(file), target)
+  print("INFO: create symlink: source = {}, link_name = {}".format(os.path.abspath(file), target))
   os.symlink(os.path.abspath(file), target)
 
 os.mkdir(homedir + "/.Trash")
+
